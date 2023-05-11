@@ -6,6 +6,15 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
+    "gyoza#build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "env": [
+        "SKIP_ENV_VALIDATION"
+      ],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
     "lint": {},
     "dev": {
       "cache": false,
