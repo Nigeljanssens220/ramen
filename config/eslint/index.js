@@ -1,3 +1,4 @@
+/** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {
   extends: ["next", "turbo", "prettier"],
   rules: {

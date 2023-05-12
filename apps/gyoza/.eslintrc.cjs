@@ -1,7 +1,1 @@
-/** @type {import("eslint").Linter.Config} */
-const config = {
-  root: true,
-  extends: ["custom"],
-};
-
-module.exports = config;
+module.exports = require('@ramen/eslint-config')

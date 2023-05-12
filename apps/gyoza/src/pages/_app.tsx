@@ -1,11 +1,16 @@
-import { type AppType } from "next/app";
+import { wagmiConfig } from '@/server/wallet/config'
+import { api } from '@/utils/api'
+import { type AppType } from 'next/app'
+import { WagmiConfig } from 'wagmi'
 
-import { api } from "@/utils/api";
+import '@/styles/globals.css'
 
-import "@/styles/globals.css";
+const App: AppType = ({ Component, pageProps }) => {
+  return (
+    <WagmiConfig config={wagmiConfig}>
+      <Component {...pageProps} />
+    </WagmiConfig>
+  )
+}
 
-const MyApp: AppType = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
-};
-
-export default api.withTRPC(MyApp);
+export default api.withTRPC(App)
