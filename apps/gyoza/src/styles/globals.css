@@ -8,4 +8,8 @@
   body {
     @apply bg-background;
   }
+
+  ::selection {
+    @apply text-background bg-primary;
+  }
 }
