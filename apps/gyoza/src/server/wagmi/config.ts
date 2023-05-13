@@ -1,6 +1,5 @@
 import { configureChains, createConfig } from 'wagmi'
 import { goerli, mainnet } from 'wagmi/chains'
-import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
@@ -15,7 +14,7 @@ export const wagmiConfig = createConfig({
   autoConnect: true,
   connectors: [
     new MetaMaskConnector({ chains }),
-    new CoinbaseWalletConnector({ chains, options: { appName: 'ramen' } }),
+    // new CoinbaseWalletConnector({ chains, options: { appName: 'ramen' } }),
   ],
   publicClient,
   webSocketPublicClient,

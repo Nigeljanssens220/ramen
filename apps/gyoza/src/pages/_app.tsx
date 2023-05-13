@@ -1,4 +1,4 @@
-import { wagmiConfig } from '@/server/wallet/config'
+import { wagmiConfig } from '@/server/wagmi/config'
 import { api } from '@/utils/api'
 import { type AppType } from 'next/app'
 import { WagmiConfig } from 'wagmi'
