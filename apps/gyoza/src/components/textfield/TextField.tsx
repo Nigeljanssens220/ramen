@@ -1,3 +1,5 @@
+'use client'
+
 import { classNames } from '@ramen/ui'
 import React, { forwardRef, useId } from 'react'
 import { BASE_INPUT_STYLES, INPUT_STYLES, ROOT_INPUT_STYLES } from './styles'

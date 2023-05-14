@@ -6,16 +6,16 @@ import { publicProvider } from 'wagmi/providers/public'
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [mainnet, goerli],
-  [alchemyProvider({ apiKey: process.env.ALCHEMY_API_KEY }), publicProvider()]
+  [
+    alchemyProvider({ apiKey: process.env.ALCHEMY_API_KEY || process.env.NEXT_PUBLIC_ALCHEMY_API_KEY }),
+    publicProvider(),
+  ]
 )
 
 // Set up wagmi config
 export const wagmiConfig = createConfig({
   autoConnect: true,
-  connectors: [
-    new MetaMaskConnector({ chains }),
-    // new CoinbaseWalletConnector({ chains, options: { appName: 'ramen' } }),
-  ],
+  connectors: [new MetaMaskConnector({ chains })],
   publicClient,
   webSocketPublicClient,
 })
