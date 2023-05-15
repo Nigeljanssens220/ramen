@@ -18,7 +18,7 @@ export const columnRouter = createTRPCRouter({
       },
     })
   }),
-  create: publicProcedure.input(createColumnSchema).query(async ({ input }) => {
+  create: publicProcedure.input(createColumnSchema).mutation(async ({ input }) => {
     const { title, userAddress } = input
 
     return await prisma.column.create({
@@ -28,7 +28,7 @@ export const columnRouter = createTRPCRouter({
       },
     })
   }),
-  update: publicProcedure.input(updateColumnSchema).query(async ({ input }) => {
+  update: publicProcedure.input(updateColumnSchema).mutation(async ({ input }) => {
     const { id, title, userAddress } = input
 
     return await prisma.story.update({
@@ -39,7 +39,7 @@ export const columnRouter = createTRPCRouter({
       },
     })
   }),
-  delete: publicProcedure.input(deleteColumnSchema).query(async ({ input }) => {
+  delete: publicProcedure.input(deleteColumnSchema).mutation(async ({ input }) => {
     const { id } = input
 
     return await prisma.story.delete({
