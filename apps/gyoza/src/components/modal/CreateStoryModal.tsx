@@ -28,7 +28,7 @@ const CreateStoryModal: React.FC<CreateStoryModalProps> = ({ columnId }) => {
   }, [address, columnId, methods])
 
   // disable the button if the form is not completely filled in or the mutation is loading
-  const isDisabled = !methods.formState.isValid || isLoading
+  // const isDisabled = !methods.formState.isValid
 
   return (
     <Modal>
@@ -40,19 +40,16 @@ const CreateStoryModal: React.FC<CreateStoryModalProps> = ({ columnId }) => {
       <Modal.Content size="sm">
         <Modal.Title>Create new story</Modal.Title>
         <Modal.Description>
-          <div className="flex flex-col gap-y-2">
+          <div>
             <FormProvider {...methods}>
-              <FormTextField name="title" label="Title" />
-              <FormTextArea name="content" label="Description" />
+              <form onSubmit={methods.handleSubmit(handleCreateStory)} className="flex flex-col gap-y-4">
+                <FormTextField name="title" label="Title" />
+                <FormTextArea name="content" label="Description" />
+                <Button type="submit">Create</Button>
+              </form>
             </FormProvider>
           </div>
         </Modal.Description>
-        <Modal.Footer>
-          <Modal.Close>Cancel</Modal.Close>
-          <Button disabled={isDisabled} onClick={methods.handleSubmit(handleCreateStory)}>
-            Create
-          </Button>
-        </Modal.Footer>
       </Modal.Content>
     </Modal>
   )

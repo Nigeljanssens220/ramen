@@ -1,7 +1,8 @@
 import { ErrorMessage } from '@hookform/error-message'
-import { forwardRef, useEffect, useId } from 'react'
+import { classNames } from '@ramen/ui'
+import { useEffect, useId } from 'react'
 import { useFormContext } from 'react-hook-form'
-import TextField from '../textfield/TextField'
+import { INPUT_STYLES, ROOT_INPUT_STYLES } from '../textfield/styles'
 import Typography from '../typography/Typography'
 
 interface FormTextFieldProps extends React.ComponentPropsWithoutRef<'input'> {
@@ -13,54 +14,62 @@ interface FormTextFieldProps extends React.ComponentPropsWithoutRef<'input'> {
   placeholder?: string
 }
 
-const FormTextField: React.FC<FormTextFieldProps> = forwardRef<HTMLInputElement, FormTextFieldProps>(
-  ({ name, id = '', className, value, label, placeholder, ...rest }) => {
-    const textFieldId = useId()
-    const {
-      register,
-      unregister,
-      formState: { errors },
-    } = useFormContext()
+const FormTextField: React.FC<FormTextFieldProps> = ({
+  name,
+  id = '',
+  className,
+  value,
+  label,
+  placeholder,
+  disabled,
+  ...rest
+}) => {
+  const textFieldId = useId()
+  const {
+    register,
+    unregister,
+    formState: { errors },
+  } = useFormContext()
 
-    const isError = name in errors
+  const isError = name in errors
 
-    useEffect(() => {
-      return () => {
-        unregister(name)
-      }
-    }, [name, unregister])
+  useEffect(() => {
+    return () => {
+      unregister(name)
+    }
+  }, [name, unregister])
 
-    return (
-      <div className="flex w-full flex-col items-start">
-        <Typography
-          variant="md/regular"
-          as="label"
-          htmlFor={id + textFieldId}
-          className="!text-background font-semibold"
-        >
-          {label}
-        </Typography>
-        <TextField
-          {...register(name)}
-          id={id + textFieldId}
-          placeholder={placeholder}
-          value={value}
-          error={isError}
-          className="w-full"
-          {...rest}
-        />
-        <ErrorMessage
-          errors={errors}
-          name={name}
-          render={({ message }) => (
-            <Typography variant="md/regular" as="span" className="my-1 !text-red-600">
-              {message}
-            </Typography>
-          )}
-        />
-      </div>
-    )
-  }
-)
+  return (
+    <div className="flex w-full flex-col items-start gap-y-1">
+      <Typography variant="md/regular" as="label" htmlFor={id + textFieldId} className="!text-background font-semibold">
+        {label}
+      </Typography>
+      <input
+        {...register(name)}
+        {...rest}
+        type="text"
+        id={id + textFieldId}
+        placeholder={placeholder}
+        value={value}
+        className={classNames(
+          className,
+          ROOT_INPUT_STYLES,
+          isError ? INPUT_STYLES.error : '',
+          disabled ? INPUT_STYLES.disabled : '',
+          'w-full'
+        )}
+      />
+      <ErrorMessage
+        errors={errors}
+        name={name}
+        render={({ message }) => (
+          <Typography variant="md/regular" as="span" className="my-1 !text-red-600">
+            {message}
+          </Typography>
+        )}
+      />
+    </div>
+  )
+}
 
 export default FormTextField

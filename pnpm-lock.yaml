@@ -61,6 +61,9 @@ importers:
       '@trpc/server':
         specifier: ^10.18.0
         version: 10.18.0
+      '@uiball/loaders':
+        specifier: ^1.2.6
+        version: 1.2.6(react-dom@18.2.0)(react@18.2.0)
       '@wagmi/chains':
         specifier: ^0.2.22
         version: 0.2.22(typescript@5.0.4)
@@ -2020,6 +2023,16 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.59.2
       eslint-visitor-keys: 3.4.1
+
+  /@uiball/loaders@1.2.6(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Db3be5pG9ciZa1Rxr6Iwv8bIwVP+g00m3GYQFsu3j7B9T16MpHhnGXLksuNtKlePdP3FCTFGpFrXbJz4GG/OOg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /@wagmi/chains@0.2.16(typescript@5.0.4):
     resolution: {integrity: sha512-rkWaI2PxCnbD8G07ZZff5QXftnSkYL0h5f4DkHCG3fGYYr/ZDvmCL4bMae7j7A9sAif1csPPBmbCzHp3R5ogCQ==}

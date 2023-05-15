@@ -1,8 +1,10 @@
 import { CreateStorySchema } from '@/server/api/schemas/story/createStory'
 import { api } from '@/utils/api'
+import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 
 export const useCreateStory = () => {
+  const router = useRouter()
   const createStory = api.story.create.useMutation()
 
   const handleCreateStory = useCallback(({ columnId, content, title, userAddress }: CreateStorySchema) => {
@@ -15,7 +17,7 @@ export const useCreateStory = () => {
       },
       {
         onSuccess: () => {
-          // TODO: invalidate Column cache
+          router.reload()
         },
       }
     )
