@@ -1,10 +1,10 @@
 import { ErrorMessage } from '@hookform/error-message'
 import { forwardRef, useEffect, useId } from 'react'
 import { useFormContext } from 'react-hook-form'
-import TextField from '../textfield/TextField'
+import TextArea from '../textarea/TextArea'
 import Typography from '../typography/Typography'
 
-interface FormTextFieldProps extends React.ComponentPropsWithoutRef<'input'> {
+interface FormTextAreaProps extends React.ComponentPropsWithoutRef<'textarea'> {
   name: string
   id?: string
   className?: string
@@ -13,7 +13,7 @@ interface FormTextFieldProps extends React.ComponentPropsWithoutRef<'input'> {
   placeholder?: string
 }
 
-const FormTextField: React.FC<FormTextFieldProps> = forwardRef<HTMLInputElement, FormTextFieldProps>(
+const FormTextArea: React.FC<FormTextAreaProps> = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
   ({ name, id = '', className, value, label, placeholder, ...rest }) => {
     const textFieldId = useId()
     const {
@@ -40,7 +40,7 @@ const FormTextField: React.FC<FormTextFieldProps> = forwardRef<HTMLInputElement,
         >
           {label}
         </Typography>
-        <TextField
+        <TextArea
           {...register(name)}
           id={id + textFieldId}
           placeholder={placeholder}
@@ -63,4 +63,4 @@ const FormTextField: React.FC<FormTextFieldProps> = forwardRef<HTMLInputElement,
   }
 )
 
-export default FormTextField
+export default FormTextArea
