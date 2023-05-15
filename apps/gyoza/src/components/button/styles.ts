@@ -5,7 +5,7 @@ export const BASE_BUTTON_STYLES =
 export const BUTTON_STYLES = {
   primary: 'bg-secondary text-background hover:bg-opacity-80',
   secondary: 'bg-tertiary text-primary hover:bg-opacity-80',
-  base: 'bg-transparent text-primary hover:bg-primary hover:bg-opacity-10',
+  base: 'bg-transparent text-background hover:bg-background hover:bg-opacity-20',
   inline:
     'text-slate-500 hover:text-primary-600 focus:underline focus:decoration-slate-800 focus:underline-offset-4 active:text-slate-800 disabled:pointer-events-none disabled:text-primary-400',
 } as const

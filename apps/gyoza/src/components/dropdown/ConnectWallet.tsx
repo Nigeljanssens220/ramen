@@ -11,7 +11,7 @@ const ConnectWallet: React.FC = () => {
     <DropdownMenu>
       <DropdownMenu.Trigger
         asChild
-        className="bg-secondary rounded p-1 shadow-100 data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=top]:animate-slideDownAndFade"
+        className="rounded p-1 shadow-100 data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=top]:animate-slideDownAndFade"
       >
         <Button>Connect wallet</Button>
       </DropdownMenu.Trigger>

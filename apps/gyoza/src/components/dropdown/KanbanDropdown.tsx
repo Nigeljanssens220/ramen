@@ -3,17 +3,21 @@ import Button from '../button/Button'
 import CreateStoryModal from '../modal/CreateStoryModal'
 import { DropdownMenu } from './Dropdown'
 
-const KanbanDropdown: React.FC = () => {
+export interface KanbanDropdownProps {
+  columnId: string
+}
+
+const KanbanDropdown: React.FC<KanbanDropdownProps> = ({ columnId }) => {
   return (
     <DropdownMenu>
       <DropdownMenu.Trigger asChild>
         <Button>
-          <EllipsisVerticalIcon className="h-6 w-6 fill-primary" />
+          <EllipsisVerticalIcon className="fill-background h-6 w-6" />
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content className="w-56">
         <DropdownMenu.Group>
-          <CreateStoryModal />
+          <CreateStoryModal columnId={columnId} />
         </DropdownMenu.Group>
       </DropdownMenu.Content>
     </DropdownMenu>
