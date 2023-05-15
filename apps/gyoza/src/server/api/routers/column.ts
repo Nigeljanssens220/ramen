@@ -31,7 +31,7 @@ export const columnRouter = createTRPCRouter({
   update: publicProcedure.input(updateColumnSchema).mutation(async ({ input }) => {
     const { id, title, userAddress } = input
 
-    return await prisma.story.update({
+    return await prisma.column.update({
       where: { id },
       data: {
         title,
@@ -42,7 +42,7 @@ export const columnRouter = createTRPCRouter({
   delete: publicProcedure.input(deleteColumnSchema).mutation(async ({ input }) => {
     const { id } = input
 
-    return await prisma.story.delete({
+    return await prisma.column.delete({
       where: { id },
     })
   }),
