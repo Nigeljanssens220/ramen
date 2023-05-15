@@ -1,11 +1,15 @@
 import { createEnv } from '@t3-oss/env-nextjs'
+import * as z from 'zod'
 
 export const env = createEnv({
   /**
    * Specify your server-side environment variables schema here. This way you can ensure the app
    * isn't built with invalid env vars.
    */
-  server: {},
+  server: {
+    DATABASE_URL: z.string().min(1),
+    ALCHEMY_API_KEY: z.string().min(1),
+  },
 
   /**
    * Specify your client-side environment variables schema here. This way you can ensure the app

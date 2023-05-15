@@ -5,7 +5,7 @@ import { deleteStorySchema } from '../schemas/story/deleteStory'
 import { updateStorySchema } from '../schemas/story/updateStory'
 
 export const storyRouter = createTRPCRouter({
-  create: publicProcedure.input(createStorySchema).query(async ({ input }) => {
+  create: publicProcedure.input(createStorySchema).mutation(async ({ input }) => {
     const { title, content, userAddress, columnId } = input
 
     return await prisma.story.create({
@@ -17,7 +17,7 @@ export const storyRouter = createTRPCRouter({
       },
     })
   }),
-  update: publicProcedure.input(updateStorySchema).query(async ({ input }) => {
+  update: publicProcedure.input(updateStorySchema).mutation(async ({ input }) => {
     const { id, title, content, userAddress, columnId } = input
 
     return await prisma.story.update({
@@ -30,7 +30,7 @@ export const storyRouter = createTRPCRouter({
       },
     })
   }),
-  delete: publicProcedure.input(deleteStorySchema).query(async ({ input }) => {
+  delete: publicProcedure.input(deleteStorySchema).mutation(async ({ input }) => {
     const { id } = input
 
     return await prisma.story.delete({
