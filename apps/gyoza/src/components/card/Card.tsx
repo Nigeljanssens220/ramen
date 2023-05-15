@@ -16,11 +16,7 @@ export interface CardProps extends React.ComponentProps<'div'> {
 
 const Card = forwardRef<HTMLDivElement, CardProps>(({ className, children, ...rest }: CardProps, ref) => {
   return (
-    <div
-      ref={ref}
-      className={classNames(className, 'bg-accent rounded-16 bg-opacity-5 px-6 py-5 shadow-200')}
-      {...rest}
-    >
+    <div ref={ref} className={classNames(className, 'rounded-16 bg-primary bg-opacity-10 p-2 shadow-200')} {...rest}>
       {children}
     </div>
   )

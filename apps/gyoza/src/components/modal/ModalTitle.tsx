@@ -18,7 +18,7 @@ export const ModalTitle = forwardRef<
     </DialogTitle>
     <DialogClose asChild>
       <Button variant="sm/base" className="!rounded-sm !p-0">
-        <XMarkIcon className="fill-background hover:bg-background h-6 w-6 rounded-4 hover:bg-opacity-20" />
+        <XMarkIcon className="fill-background hover:bg-background h-6 w-6 rounded-4 hover:fill-primary" />
         <span className="sr-only">Close</span>
       </Button>
     </DialogClose>

@@ -1,7 +1,7 @@
 'use client'
 
 import { classNames } from '@ramen/ui'
-import React, { forwardRef, useId } from 'react'
+import React, { forwardRef } from 'react'
 import { BASE_INPUT_STYLES, INPUT_STYLES, ROOT_INPUT_STYLES } from './styles'
 
 export interface TextFieldProps extends React.ComponentPropsWithoutRef<'input'> {
@@ -9,7 +9,7 @@ export interface TextFieldProps extends React.ComponentPropsWithoutRef<'input'> 
    * Disables the Text Field.
    * @default false
    */
-  disabled: boolean
+  disabled?: boolean
   /**
    * Enables the error mode for the Text Field.
    * @default false
@@ -27,8 +27,6 @@ export interface TextFieldProps extends React.ComponentPropsWithoutRef<'input'> 
 
 const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   ({ className, startIcon, endIcon, disabled, error = false, ...rest }: TextFieldProps, ref) => {
-    const textFieldId = useId()
-
     return (
       <div
         className={classNames(
@@ -40,9 +38,9 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       >
         {startIcon && startIcon}
         <input
-          id={textFieldId}
+          type="text"
           className={classNames(
-            error ? '!text-feedback-red-600' : '',
+            error ? '!text-red-600' : '',
             disabled ? 'disabled:bg-transparent' : '',
             BASE_INPUT_STYLES
           )}

@@ -1,8 +1,7 @@
 export const ROOT_INPUT_STYLES =
-  'flex justify-center items-center px-3.5 py-1.5 bg-white rounded-8 outline-none placeholder text-lg border text-primary-500 hover:ring-1 hover:ring-primary-500 active:ring-accent-orange-500 focus-within:border-accent-orange-500 focus-within:!ring-accent-orange-500'
-export const BASE_INPUT_STYLES = 'w-full outline-none'
+  'flex justify-center items-center px-3.5 py-1.5 bg-tertiary bg-opacity-10 rounded-8 outline-none text-lg text-background hover:ring-1 hover:ring-background active:ring-background focus-within:ring-background'
+export const BASE_INPUT_STYLES = 'bg-transparent w-full outline-none'
 export const INPUT_STYLES = {
-  error:
-    'border-feedback-red-600 hover:!ring-feedback-red-600 focus-within:!ring-feedback-red-600 active:!ring-feedback-red-600',
-  disabled: '!bg-primary-100 pointer-events-none border-primary-200',
+  error: 'border border-red-600 hover:!ring-red-600 focus-within:ring-red-600 active:ring-red-600',
+  disabled: '!bg-gray-100 pointer-events-none',
 } as const
