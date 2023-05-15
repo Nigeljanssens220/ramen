@@ -1,59 +1,49 @@
 import { useCreateColumn } from '@/hooks/column/useCreateColumn'
 import { CreateColumnSchema, createColumnSchema } from '@/server/api/schemas/column/createColumn'
-import { PlusIcon } from '@heroicons/react/24/solid'
+import { PlusSmallIcon } from '@heroicons/react/24/solid'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useAccount } from 'wagmi'
 import Button from '../button/Button'
-import FormTextField from '../form/FormTextField'
-import Spinner from '../spinner'
+import { FormCreateColumn } from '../form'
 import Modal from './Modal'
 
 const CreateColumnModal: React.FC = () => {
   const [open, setOpen] = useState(false)
   const { address } = useAccount()
-  const methods = useForm<CreateColumnSchema>({ resolver: zodResolver(createColumnSchema) })
+  const methods = useForm<CreateColumnSchema>({
+    resolver: zodResolver(createColumnSchema),
+    defaultValues: { userAddress: address },
+  })
   const {
     createColumn: { isLoading },
     handleCreateColumn,
   } = useCreateColumn()
-
-  // disable the button if the form is not completely filled in or the mutation is loading
-  const isDisabled = !methods.formState.isValid
-
-  // Set the default values for the form fields
-  useEffect(() => {
-    methods.setValue('userAddress', address)
-  }, [address, methods])
 
   const onSubmit = useCallback(async (data: CreateColumnSchema) => {
     await handleCreateColumn(data)
     setOpen(false)
   }, [])
 
+  // disable the button if the form is not completely filled in or the mutation is loading
+  const isDisabled = !methods.formState.isValid
+
   return (
     <Modal open={open} onOpenChange={setOpen}>
-      <Modal.Trigger asChild>
-        <Button variant="md/primary">
-          <PlusIcon className="mr-2 h-5 w-5" />
+      <Modal.Trigger asChild className="w-full">
+        <Button variant="md/base" className="hover:!bg-background hover:!bg-opacity-20">
+          <PlusSmallIcon className="mr-2 h-5 w-5" />
           Create column
         </Button>
       </Modal.Trigger>
       <Modal.Content size="sm">
         <Modal.Title>Create new column</Modal.Title>
-        <Modal.Description>
-          <div>
-            <FormProvider {...methods}>
-              <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
-                <FormTextField name="title" label="Title" />
-                <Button disabled={isDisabled} type="submit">
-                  {isLoading ? <Spinner /> : 'Create'}
-                </Button>
-              </form>
-            </FormProvider>
-          </div>
-        </Modal.Description>
+        <FormProvider {...methods}>
+          <Modal.Description asChild>
+            <FormCreateColumn onSubmit={onSubmit} submitDisabled={isDisabled} mutationLoading={isLoading} />
+          </Modal.Description>
+        </FormProvider>
       </Modal.Content>
     </Modal>
   )

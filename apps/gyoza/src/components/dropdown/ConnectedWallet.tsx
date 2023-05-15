@@ -1,18 +1,16 @@
-import { useAccount, useDisconnect, useEnsAvatar, useEnsName } from 'wagmi'
+import { useAccount, useDisconnect } from 'wagmi'
 import Button from '../button/Button'
 import { DropdownMenu } from './Dropdown'
 
 const ConnectedWallet: React.FC = () => {
   const { address } = useAccount()
-  const { data: ensName } = useEnsName({ address })
-  const { data: ensAvatar } = useEnsAvatar({ name: ensName })
   const { disconnect } = useDisconnect()
 
   return (
     <DropdownMenu>
       <DropdownMenu.Trigger
         asChild
-        className="bg-secondary rounded p-1 shadow-100 data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=top]:animate-slideDownAndFade"
+        className="rounded bg-secondary p-1 shadow-100 data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=top]:animate-slideDownAndFade"
       >
         <Button>{address.slice(0, 4) + '...' + address.slice(38)}</Button>
       </DropdownMenu.Trigger>

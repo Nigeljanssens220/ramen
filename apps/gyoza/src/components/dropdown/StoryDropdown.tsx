@@ -1,5 +1,4 @@
-import { EllipsisVerticalIcon } from '@heroicons/react/24/solid'
-import Button from '../button/Button'
+import DropdownTriggerButton from '../button/DropdownTriggerButton'
 import DeleteStoryModal from '../modal/DeleteStoryModal'
 import { DropdownMenu } from './Dropdown'
 
@@ -10,11 +9,7 @@ export interface StoryDropdownProps {
 const StoryDropdown: React.FC<StoryDropdownProps> = ({ storyId }) => {
   return (
     <DropdownMenu>
-      <DropdownMenu.Trigger asChild className="px-1">
-        <Button variant="md/base">
-          <EllipsisVerticalIcon className="h-6 w-6 fill-primary" />
-        </Button>
-      </DropdownMenu.Trigger>
+      <DropdownTriggerButton />
       <DropdownMenu.Content className="w-56">
         <DropdownMenu.Group>
           <DeleteStoryModal storyId={storyId} />

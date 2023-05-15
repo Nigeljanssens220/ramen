@@ -2,10 +2,10 @@ import { ErrorMessage } from '@hookform/error-message'
 import { classNames } from '@ramen/ui'
 import { useEffect, useId } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { INPUT_STYLES, ROOT_INPUT_STYLES } from '../textfield/styles'
-import Typography from '../typography/Typography'
+import { INPUT_STYLES, ROOT_INPUT_STYLES } from '../../textfield/styles'
+import Typography from '../../typography/Typography'
 
-interface FormTextFieldProps extends React.ComponentPropsWithoutRef<'input'> {
+interface FormTextAreaProps extends React.ComponentPropsWithoutRef<'textarea'> {
   name: string
   id?: string
   className?: string
@@ -14,7 +14,7 @@ interface FormTextFieldProps extends React.ComponentPropsWithoutRef<'input'> {
   placeholder?: string
 }
 
-const FormTextField: React.FC<FormTextFieldProps> = ({
+const FormTextArea: React.FC<FormTextAreaProps> = ({
   name,
   id = '',
   className,
@@ -41,13 +41,12 @@ const FormTextField: React.FC<FormTextFieldProps> = ({
 
   return (
     <div className="flex w-full flex-col items-start gap-y-1">
-      <Typography variant="md/regular" as="label" htmlFor={id + textFieldId} className="!text-background font-semibold">
+      <Typography variant="md/regular" as="label" htmlFor={id + textFieldId} className="font-semibold !text-background">
         {label}
       </Typography>
-      <input
+      <textarea
         {...register(name)}
         {...rest}
-        type="text"
         id={id + textFieldId}
         placeholder={placeholder}
         value={value}
@@ -72,4 +71,4 @@ const FormTextField: React.FC<FormTextFieldProps> = ({
   )
 }
 
-export default FormTextField
+export default FormTextArea
