@@ -1,7 +1,8 @@
 import { useCreateStory } from '@/hooks/story/useCreateStory'
 import { CreateStorySchema, createStorySchema } from '@/server/api/schemas/story/createStory'
+import { PlusSmallIcon } from '@heroicons/react/24/solid'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useAccount } from 'wagmi'
 import Button from '../button/Button'
@@ -14,12 +15,16 @@ export interface CreateStoryModalProps {
 }
 
 const CreateStoryModal: React.FC<CreateStoryModalProps> = ({ columnId }) => {
+  const [open, setOpen] = useState(false)
   const { address } = useAccount()
+  const methods = useForm<CreateStorySchema>({ resolver: zodResolver(createStorySchema) })
   const {
     createStory: { isLoading },
     handleCreateStory,
   } = useCreateStory()
-  const methods = useForm<CreateStorySchema>({ resolver: zodResolver(createStorySchema) })
+
+  // disable the button if the form is not completely filled in or the mutation is loading
+  const isDisabled = !methods.formState.isValid
 
   // Set the default values for the form fields
   useEffect(() => {
@@ -27,13 +32,16 @@ const CreateStoryModal: React.FC<CreateStoryModalProps> = ({ columnId }) => {
     methods.setValue('columnId', columnId)
   }, [address, columnId, methods])
 
-  // disable the button if the form is not completely filled in or the mutation is loading
-  // const isDisabled = !methods.formState.isValid
+  const onSubmit = useCallback(async (data: CreateStorySchema) => {
+    await handleCreateStory(data)
+    setOpen(false)
+  }, [])
 
   return (
-    <Modal>
+    <Modal open={open} onOpenChange={setOpen}>
       <Modal.Trigger asChild className="w-full">
         <Button variant="md/base" className="hover:!bg-background hover:!bg-opacity-20">
+          <PlusSmallIcon className="mr-2 h-5 w-5" />
           Create story
         </Button>
       </Modal.Trigger>
@@ -42,10 +50,12 @@ const CreateStoryModal: React.FC<CreateStoryModalProps> = ({ columnId }) => {
         <Modal.Description>
           <div>
             <FormProvider {...methods}>
-              <form onSubmit={methods.handleSubmit(handleCreateStory)} className="flex flex-col gap-y-4">
+              <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
                 <FormTextField name="title" label="Title" />
                 <FormTextArea name="content" label="Description" />
-                <Button type="submit">Create</Button>
+                <Button disabled={isDisabled} type="submit">
+                  Create
+                </Button>
               </form>
             </FormProvider>
           </div>

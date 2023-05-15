@@ -1,14 +1,13 @@
 import { EllipsisVerticalIcon } from '@heroicons/react/24/solid'
 import Button from '../button/Button'
-import CreateStoryModal from '../modal/CreateStoryModal'
-import DeleteColumnModal from '../modal/DeleteColumnModal'
+import DeleteStoryModal from '../modal/DeleteStoryModal'
 import { DropdownMenu } from './Dropdown'
 
-export interface KanbanDropdownProps {
-  columnId: string
+export interface StoryDropdownProps {
+  storyId: number
 }
 
-const KanbanDropdown: React.FC<KanbanDropdownProps> = ({ columnId }) => {
+const StoryDropdown: React.FC<StoryDropdownProps> = ({ storyId }) => {
   return (
     <DropdownMenu>
       <DropdownMenu.Trigger asChild className="px-1">
@@ -18,12 +17,11 @@ const KanbanDropdown: React.FC<KanbanDropdownProps> = ({ columnId }) => {
       </DropdownMenu.Trigger>
       <DropdownMenu.Content className="w-56">
         <DropdownMenu.Group>
-          <CreateStoryModal columnId={columnId} />
-          <DeleteColumnModal columnId={columnId} />
+          <DeleteStoryModal storyId={storyId} />
         </DropdownMenu.Group>
       </DropdownMenu.Content>
     </DropdownMenu>
   )
 }
 
-export default KanbanDropdown
+export default StoryDropdown

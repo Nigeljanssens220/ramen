@@ -2,33 +2,39 @@ import { useCreateColumn } from '@/hooks/column/useCreateColumn'
 import { CreateColumnSchema, createColumnSchema } from '@/server/api/schemas/column/createColumn'
 import { PlusIcon } from '@heroicons/react/24/solid'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Ring } from '@uiball/loaders'
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useAccount } from 'wagmi'
 import Button from '../button/Button'
 import FormTextField from '../form/FormTextField'
+import Spinner from '../spinner'
 import Modal from './Modal'
 
 const CreateColumnModal: React.FC = () => {
+  const [open, setOpen] = useState(false)
   const { address } = useAccount()
+  const methods = useForm<CreateColumnSchema>({ resolver: zodResolver(createColumnSchema) })
   const {
     createColumn: { isLoading },
     handleCreateColumn,
   } = useCreateColumn()
-  const methods = useForm<CreateColumnSchema>({ resolver: zodResolver(createColumnSchema) })
+
+  // disable the button if the form is not completely filled in or the mutation is loading
+  const isDisabled = !methods.formState.isValid
 
   // Set the default values for the form fields
   useEffect(() => {
     methods.setValue('userAddress', address)
   }, [address, methods])
 
-  // disable the button if the form is not completely filled in or the mutation is loading
-  // const isDisabled = !methods.formState.isValid
+  const onSubmit = useCallback(async (data: CreateColumnSchema) => {
+    await handleCreateColumn(data)
+    setOpen(false)
+  }, [])
 
   return (
-    <Modal>
-      <Modal.Trigger asChild className="">
+    <Modal open={open} onOpenChange={setOpen}>
+      <Modal.Trigger asChild>
         <Button variant="md/primary">
           <PlusIcon className="mr-2 h-5 w-5" />
           Create column
@@ -39,10 +45,10 @@ const CreateColumnModal: React.FC = () => {
         <Modal.Description>
           <div>
             <FormProvider {...methods}>
-              <form onSubmit={methods.handleSubmit(handleCreateColumn)} className="flex flex-col gap-y-4">
+              <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
                 <FormTextField name="title" label="Title" />
-                <Button type="submit">
-                  {isLoading ? <Ring size={20} lineWeight={5} speed={2} color="#010101" /> : 'Create'}
+                <Button disabled={isDisabled} type="submit">
+                  {isLoading ? <Spinner /> : 'Create'}
                 </Button>
               </form>
             </FormProvider>

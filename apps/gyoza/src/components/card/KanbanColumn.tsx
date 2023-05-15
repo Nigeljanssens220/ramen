@@ -14,9 +14,9 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({ title, columnId, children }
         <div className="flex items-center justify-between">
           {title}
           {/* <CreateStoryModal /> */}
-          <KanbanDropdown columnId="clhoheknh0000rymy8nh6wm6t" />
+          <KanbanDropdown columnId={columnId} />
         </div>
-        <div className={classNames(children && 'mt-2', 'flex flex-col gap-y-1')}>{children}</div>
+        <div className={classNames(!!children && 'mt-2', 'flex flex-col gap-y-1')}>{children}</div>
       </Card>
     </Card>
   )

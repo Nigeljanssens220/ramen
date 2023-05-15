@@ -1,21 +1,20 @@
 import { CreateColumnSchema } from '@/server/api/schemas/column/createColumn'
 import { api } from '@/utils/api'
-import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 
 export const useCreateColumn = () => {
-  const router = useRouter()
   const createColumn = api.column.create.useMutation()
+  const utils = api.useContext()
 
-  const handleCreateColumn = useCallback(({ title, userAddress }: CreateColumnSchema) => {
-    createColumn.mutate(
+  const handleCreateColumn = useCallback(async ({ title, userAddress }: CreateColumnSchema) => {
+    createColumn.mutateAsync(
       {
         title,
         userAddress,
       },
       {
         onSuccess: () => {
-          router.reload()
+          utils.column.invalidate()
         },
       }
     )

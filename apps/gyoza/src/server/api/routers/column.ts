@@ -2,17 +2,11 @@ import { createTRPCRouter, publicProcedure } from '@/server/api/trpc'
 import { prisma } from '@/server/db'
 import { createColumnSchema } from '../schemas/column/createColumn'
 import { deleteColumnSchema } from '../schemas/column/deleteColumn'
-import { readColumnsSchema } from '../schemas/column/readColumns'
 import { updateColumnSchema } from '../schemas/column/updateColumn'
 
 export const columnRouter = createTRPCRouter({
-  getAll: publicProcedure.input(readColumnsSchema).query(async ({ input }) => {
-    const { userAddress } = input
-
+  getAll: publicProcedure.query(async () => {
     return await prisma.column.findMany({
-      where: {
-        userAddress,
-      },
       include: {
         stories: true,
       },
