@@ -12,7 +12,10 @@ interface DeleteColumnModalProps {
 
 const DeleteColumnModal: React.FC<DeleteColumnModalProps> = ({ columnId }) => {
   const [open, setOpen] = useState(false)
-  const { deleteColumn: isLoading, handleDeleteColumn } = useDeleteColumn()
+  const {
+    deleteColumn: { isLoading },
+    handleDeleteColumn,
+  } = useDeleteColumn()
 
   const handleDelete = useCallback(async () => {
     await handleDeleteColumn({ id: columnId })

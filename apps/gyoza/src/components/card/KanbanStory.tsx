@@ -16,7 +16,7 @@ const KanbanStory: React.FC<KanbanStoryProps> = ({ story }) => {
           <Typography as="h3" variant="xl/semibold">
             {story.title}
           </Typography>
-          <StoryDropdown storyId={story.id} />
+          <StoryDropdown story={story} />
         </div>
         <Typography as="p" variant="md/regular">
           {story.content}

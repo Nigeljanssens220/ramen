@@ -1,18 +1,21 @@
+import { Story } from '@prisma/client'
 import DropdownTriggerButton from '../button/DropdownTriggerButton'
 import DeleteStoryModal from '../modal/DeleteStoryModal'
+import UpdateStoryModal from '../modal/UpdateStoryModal'
 import { DropdownMenu } from './Dropdown'
 
 export interface StoryDropdownProps {
-  storyId: number
+  story: Story
 }
 
-const StoryDropdown: React.FC<StoryDropdownProps> = ({ storyId }) => {
+const StoryDropdown: React.FC<StoryDropdownProps> = ({ story }) => {
   return (
     <DropdownMenu>
       <DropdownTriggerButton />
       <DropdownMenu.Content className="w-56">
         <DropdownMenu.Group>
-          <DeleteStoryModal storyId={storyId} />
+          <UpdateStoryModal story={story} />
+          <DeleteStoryModal storyId={story.id} />
         </DropdownMenu.Group>
       </DropdownMenu.Content>
     </DropdownMenu>

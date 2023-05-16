@@ -23,13 +23,12 @@ export const columnRouter = createTRPCRouter({
     })
   }),
   update: publicProcedure.input(updateColumnSchema).mutation(async ({ input }) => {
-    const { id, title, userAddress } = input
+    const { id, title } = input
 
     return await prisma.column.update({
       where: { id },
       data: {
         title,
-        userAddress,
       },
     })
   }),

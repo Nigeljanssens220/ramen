@@ -18,14 +18,13 @@ export const storyRouter = createTRPCRouter({
     })
   }),
   update: publicProcedure.input(updateStorySchema).mutation(async ({ input }) => {
-    const { id, title, content, userAddress, columnId } = input
+    const { id, title, content, columnId } = input
 
     return await prisma.story.update({
       where: { id },
       data: {
         title,
         content,
-        userAddress,
         columnId,
       },
     })

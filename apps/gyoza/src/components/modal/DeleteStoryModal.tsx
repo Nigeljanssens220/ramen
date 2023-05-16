@@ -12,7 +12,10 @@ interface DeleteStoryModalProps {
 
 const DeleteStoryModal: React.FC<DeleteStoryModalProps> = ({ storyId }) => {
   const [open, setOpen] = useState(false)
-  const { deleteStory: isLoading, handleDeleteStory } = useDeleteStory()
+  const {
+    deleteStory: { isLoading },
+    handleDeleteStory,
+  } = useDeleteStory()
 
   const handleDelete = useCallback(async () => {
     await handleDeleteStory({ id: storyId })
