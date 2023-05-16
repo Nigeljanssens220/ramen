@@ -1,5 +1,8 @@
+import { ItemTypes } from '@/constants/itemTypes'
+import { useKanbanStoryDrag } from '@/hooks/dnd/useKanbanStoryDrag'
 import { UserCircleIcon } from '@heroicons/react/24/solid'
 import { Story } from '@prisma/client'
+import { classNames } from '@ramen/ui'
 import StoryDropdown from '../dropdown/StoryDropdown'
 import Typography from '../typography/Typography'
 import Card from './Card'
@@ -9,8 +12,17 @@ interface KanbanStoryProps {
 }
 
 const KanbanStory: React.FC<KanbanStoryProps> = ({ story }) => {
+  const {
+    utilities: { isDragging },
+    drag,
+  } = useKanbanStoryDrag({ story, type: ItemTypes.KANBANSTORY })
+  // const { drop } = useKanbanStoryDrop({ story, type: ItemTypes.KANBANSTORY })
+
   return (
-    <Card className="flex flex-col !rounded-8 px-4 py-2">
+    <Card
+      ref={drag}
+      className={classNames(isDragging ? 'cursor-grabbing' : 'hover:cursor-grab', 'flex flex-col !rounded-8 px-4 py-2')}
+    >
       <div className="flex flex-col gap-y-2">
         <div className="flex items-center justify-between">
           <Typography as="h3" variant="xl/semibold">
@@ -18,7 +30,7 @@ const KanbanStory: React.FC<KanbanStoryProps> = ({ story }) => {
           </Typography>
           <StoryDropdown story={story} />
         </div>
-        <Typography as="p" variant="md/regular">
+        <Typography as="p" variant="md/regular" className="truncate">
           {story.content}
         </Typography>
       </div>

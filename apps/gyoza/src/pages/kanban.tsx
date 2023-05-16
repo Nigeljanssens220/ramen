@@ -2,6 +2,8 @@ import Card from '@/components/card/Card'
 import KanbanColumn from '@/components/card/KanbanColumn'
 import KanbanStory from '@/components/card/KanbanStory'
 import CreateColumnModal from '@/components/modal/CreateColumnModal'
+import Typography from '@/components/typography/Typography'
+import { WalletButton } from '@/components/wagmi/Profile'
 import { useIsMounted } from '@/hooks/useIsMounted'
 import { api } from '@/utils/api'
 import { classNames } from '@ramen/ui'
@@ -12,7 +14,7 @@ import { useAccount } from 'wagmi'
 
 const Kanban: NextPage = () => {
   const isMounted = useIsMounted()
-  const { address: userAddress } = useAccount()
+  const { address: userAddress, isConnected } = useAccount()
   const { data: kanbanColumns, isLoading } = api.column.getAll.useQuery(undefined, {
     enabled: !!userAddress && isMounted,
   })
@@ -25,10 +27,18 @@ const Kanban: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen w-full max-w-screen-2xl flex-col items-center justify-center gap-y-4 border border-background pt-10 text-primary">
-        <Card className="!bg-secondary !p-1">
-          <CreateColumnModal />
-        </Card>
-
+        {isConnected ? (
+          <Card className="!bg-secondary !p-0">
+            <CreateColumnModal />
+          </Card>
+        ) : (
+          <>
+            <Typography as="h1" variant="xl/semibold">
+              Connect yourself, before you wreck yourself
+            </Typography>
+            <WalletButton />
+          </>
+        )}
         <div
           className={classNames(
             isMounted && !!userAddress ? 'flex' : 'hidden',
