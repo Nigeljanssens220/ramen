@@ -10,9 +10,9 @@ export const ConnectWallet: React.FC = () => {
     <DropdownMenu>
       <DropdownMenu.Trigger
         asChild
-        className="rounded p-1 shadow-100 data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=top]:animate-slideDownAndFade"
+        className="p-1 shadow-100 data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=top]:animate-slideDownAndFade"
       >
-        <Button>Connect wallet</Button>
+        <Button>Connect</Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content className="w-56">
         <DropdownMenu.Group>

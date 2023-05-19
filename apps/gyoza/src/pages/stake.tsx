@@ -8,7 +8,11 @@ import { useAccount } from 'wagmi'
 const Stake: NextPage = () => {
   const isMounted = useIsMounted()
   const { isConnected } = useAccount()
-  return <PageLayout>{isMounted && isConnected ? <StakeUnstake /> : <ConnectWalletPhrase />}</PageLayout>
+  return (
+    <PageLayout className="mt-16 gap-y-2 sm:mt-0">
+      {isMounted && isConnected ? <StakeUnstake /> : <ConnectWalletPhrase />}
+    </PageLayout>
+  )
 }
 
 export default Stake
