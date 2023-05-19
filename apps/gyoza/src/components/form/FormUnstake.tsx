@@ -1,20 +1,19 @@
 import { xSushiABI } from '@/contracts/xsushi'
 import { useBalance } from '@/hooks/stake/useBalance'
 import { useUnstake } from '@/hooks/stake/useUnstake'
+import { parseEther } from '@/lib/parseEther'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid'
 import { Button, NumberField, Typography, classNames } from '@ramen/ui'
 import { useState } from 'react'
-import { parseEther } from 'viem'
 
 interface FormUnstakeProps {
   unstakeTokenAddress?: string
 }
 
 export const FormUnstake: React.FC<FormUnstakeProps> = ({ unstakeTokenAddress }) => {
-  // const isMounted = useIsMounted()
   const [unstakeAmount, setUnstakeAmount] = useState<string | null>()
 
-  const amount = Boolean(unstakeAmount) ? parseEther(`${parseFloat(unstakeAmount)}`) : parseEther(`${0}`)
+  const amount = parseEther(unstakeAmount)
 
   const { data: balance } = useBalance({ tokenAddress: unstakeTokenAddress })
   const { contract: unstake, error: unstakeError } = useUnstake({

@@ -4,10 +4,10 @@ import { useAllowance } from '@/hooks/stake/useAllowance'
 import { useApproval } from '@/hooks/stake/useApproval'
 import { useBalance } from '@/hooks/stake/useBalance'
 import { useStake } from '@/hooks/stake/useStake'
+import { parseEther } from '@/lib/parseEther'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid'
 import { Button, NumberField, Typography, classNames } from '@ramen/ui'
 import { useState } from 'react'
-import { parseEther } from 'viem'
 
 interface FormStakeProps {
   tokenAddress?: string
@@ -15,7 +15,6 @@ interface FormStakeProps {
 }
 
 export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddress }) => {
-  // const isMounted = useIsMounted()
   const [stakeAmount, setStakeAmount] = useState<string | null>()
   const { data: allowance } = useAllowance({
     spenderAddress: spenderAddress as `0x${string}`,
@@ -23,7 +22,8 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
     abi: sushiABI,
   })
 
-  const amount = Boolean(stakeAmount) ? parseEther(`${parseFloat(stakeAmount)}`) : parseEther(`${0}`)
+  const amount = parseEther(stakeAmount)
+
   const { contract: approval, error } = useApproval({
     amount,
     spenderAddress,
