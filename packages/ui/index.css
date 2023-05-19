@@ -1463,6 +1463,9 @@ video {
 .bg-opacity-20 {
   --tw-bg-opacity: 0.2;
 }
+.bg-opacity-50 {
+  --tw-bg-opacity: 0.5;
+}
 .decoration-slice {
   -webkit-box-decoration-break: slice;
   box-decoration-break: slice;
@@ -2509,12 +2512,6 @@ video {
   }
   .sm\:w-auto {
     width: auto;
-  }
-  .sm\:items-center {
-    align-items: center;
-  }
-  .sm\:rounded-16 {
-    border-radius: 16px;
   }
   .sm\:text-left {
     text-align: left;
