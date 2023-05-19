@@ -33,7 +33,7 @@ export interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
   className?: string
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, children, variant = 'md/primary', fullWidth = false, disabled = false, ...rest }: ButtonProps, ref) => {
     const [size, buttonVariant] = variant.split('/') as [ButtonStylesProps['size'], ButtonStylesProps['variant']]
 
@@ -42,12 +42,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
         disabled={disabled}
         ref={ref}
-        className={classNames(className, buttonStyles({ fullWidth, disabled, size, variant: buttonVariant }))}
+        className={classNames(buttonStyles({ fullWidth, disabled, size, variant: buttonVariant }), className)}
       >
         {children}
       </button>
     )
   }
 )
-
-export default Button
+Button.displayName = 'Button'

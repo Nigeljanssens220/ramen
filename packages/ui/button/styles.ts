@@ -1,14 +1,12 @@
 import { cva } from 'class-variance-authority'
 
 export const BASE_BUTTON_STYLES =
-  'flex space-x-xs items-center justify-center duration-150 outline-none py-1.5 px-[22px] rounded-[40px] font-bold focus:ring-2 focus:ring-offset-2 '
+  'flex space-x-xs items-center justify-center duration-150 outline-none py-1.5 px-[22px] rounded-16 font-bold focus-visible:ring-2 focus-visible:ring-primary'
 export const BUTTON_STYLES = {
-  primary: 'bg-slate-500 text-white hover:bg-slate-600 active:bg-slate-800 disabled:bg-primary-200',
-  secondary:
-    'border-2 border-slate-600 bg-primary-100/0 text-slate-600 hover:border-slate-800 hover:text-slate-800 hover:bg-slate-100 focus:ring-1 focus:ring-offset-0 active:border-slate-800 active:text-slate-800 active:bg-slate-300',
-  base: 'text-slate-600 hover:text-slate-800 hover:bg-slate-100 active:text-slate-800 active:bg-slate-300',
-  inline:
-    'text-slate-500 hover:text-primary-600 focus:underline focus:decoration-slate-800 focus:underline-offset-4 active:text-slate-800 disabled:pointer-events-none disabled:text-primary-400',
+  primary: 'bg-secondary text-background hover:bg-opacity-80',
+  secondary: 'bg-tertiary text-primary hover:bg-opacity-80',
+  base: 'bg-transparent text-background hover:bg-background hover:bg-opacity-20',
+  inline: 'text-background hover:text-background/80 disabled:pointer-events-none disabled:text-background/20',
 } as const
 
 export const buttonStyles = cva(BASE_BUTTON_STYLES, {
@@ -27,7 +25,7 @@ export const buttonStyles = cva(BASE_BUTTON_STYLES, {
       true: 'w-full',
     },
     disabled: {
-      true: 'disabled:text-primary-400 pointer-events-none',
+      true: 'disabled:text-background/30 pointer-events-none',
     },
   },
   compoundVariants: [
