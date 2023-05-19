@@ -1,4 +1,4 @@
 module.exports = {
   root: true,
-  extends: ["@ramen/eslint-config"],
-};
+  extends: ['@ramen/eslint-config'],
+}
