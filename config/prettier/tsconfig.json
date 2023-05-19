@@ -1,0 +1,6 @@
+{
+  "extends": "@ramen/typescript-config/base.json",
+  "compilerOptions": {},
+  "include": ["index.js"],
+  "exclude": ["node_modules"]
+}

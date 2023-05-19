@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@ramen/eslint-config": "workspace:^",
+    "@ramen/prettier-config": "workspace:^",
     "@ramen/tailwindcss-config": "workspace:^",
     "@ramen/typescript-config": "workspace:^",
     "@types/eslint": "^8.21.3",

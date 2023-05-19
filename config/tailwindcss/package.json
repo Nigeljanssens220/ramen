@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@ramen/eslint-config": "workspace:^"
+    "@ramen/eslint-config": "workspace:^",
+    "@ramen/prettier-config": "workspace:^"
   },
   "dependencies": {
     "class-variance-authority": "^0.6.0",
