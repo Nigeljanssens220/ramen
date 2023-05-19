@@ -23,16 +23,18 @@ export const useKanbanStoryDrag = ({ story, type }: DragProps) => {
       item: { story },
       end: (item, monitor) => {
         const dropResult = monitor.getDropResult() as DropResult
-        if (item && dropResult) {
-          updateStory.mutate(
-            { id: story.id, columnId: dropResult.name },
-            {
-              onSuccess: () => {
-                utils.column.invalidate()
-              },
-            }
-          )
-        }
+
+        if (!item || !dropResult) return
+        if (item.story.columnId === dropResult.name) return // prevent unnecessary mutation
+
+        updateStory.mutate(
+          { id: item.story.id, columnId: dropResult.name },
+          {
+            onSuccess: () => {
+              utils.column.invalidate()
+            },
+          }
+        )
       },
       collect: (monitor) => ({
         isDragging: monitor.isDragging(),
