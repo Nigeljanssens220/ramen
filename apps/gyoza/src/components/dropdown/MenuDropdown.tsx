@@ -15,7 +15,7 @@ const MenuDropdown: React.FC<Props> = ({ className }) => {
           'bg-transparent p-1 text-primary shadow-100 data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=top]:animate-slideDownAndFade'
         )}
       >
-        <Button className="rounded-16 px-[22px]">
+        <Button className="rounded-16 !px-2">
           <Bars3Icon className="h-6 w-6" />
         </Button>
       </DropdownMenu.Trigger>

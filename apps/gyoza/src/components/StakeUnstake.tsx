@@ -14,8 +14,8 @@ export const StakeUnstake: React.FC = () => {
 
   return (
     <div className="flex h-full w-full flex-col items-start justify-center gap-y-2 p-4 sm:flex-row sm:gap-x-8">
-      <Card className="flex flex-col justify-between gap-y-2 px-6 py-4">
-        <Heading variant="light">
+      <Card className="flex w-full max-w-lg flex-col justify-between gap-y-2 px-6 py-4">
+        <Heading variant="light" className="text-heading-1 sm:text-heading-large">
           Stake {sushiMetadata && sushiMetadata.symbol} & {xsushiMetadata && xsushiMetadata.symbol}
         </Heading>
         <Tabs defaultValue="stake">
@@ -34,21 +34,24 @@ export const StakeUnstake: React.FC = () => {
           </Tabs.Content>
         </Tabs>
       </Card>
-      <Card className="flex w-full flex-col items-center gap-y-8 px-6 py-6 sm:w-fit sm:items-start sm:pb-12">
-        <Heading variant="light">Balance</Heading>
-        <TokenBalance
-          label="STAKED"
-          imageSrc="/xsushi-logo.png"
-          tokenAddress={xsushiMetadata && xsushiMetadata.address}
-          symbol={xsushiMetadata && xsushiMetadata.symbol}
-        />
-        <hr className="bg-primary" />
-        <TokenBalance
-          label="UNSTAKED"
-          imageSrc="/sushi-logo.png"
-          tokenAddress={sushiMetadata && sushiMetadata.address}
-          symbol={sushiMetadata && sushiMetadata.symbol}
-        />
+      <Card className="flex w-full max-w-lg flex-col items-center gap-y-8 px-6 py-6 sm:w-fit sm:items-start sm:pb-12">
+        <Heading variant="light" className="text-heading-1 sm:text-heading-large">
+          Balance
+        </Heading>
+        <div className="flex gap-4 sm:flex-col">
+          <TokenBalance
+            label="STAKED"
+            imageSrc="/xsushi-logo.png"
+            tokenAddress={xsushiMetadata && xsushiMetadata.address}
+            symbol={xsushiMetadata && xsushiMetadata.symbol}
+          />
+          <TokenBalance
+            label="UNSTAKED"
+            imageSrc="/sushi-logo.png"
+            tokenAddress={sushiMetadata && sushiMetadata.address}
+            symbol={sushiMetadata && sushiMetadata.symbol}
+          />
+        </div>
       </Card>
     </div>
   )
