@@ -8,7 +8,7 @@ export const env = createEnv({
    */
   server: {
     DATABASE_URL: z.string().min(1),
-    ALCHEMY_API_KEY: z.string().min(1),
+    ALCHEMY_KEY: z.string().min(1),
   },
 
   /**
@@ -17,7 +17,7 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
-    // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
+    NEXT_PUBLIC_ALCHEMY_KEY: z.string().min(1),
   },
 
   /**

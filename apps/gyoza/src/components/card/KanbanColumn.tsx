@@ -23,14 +23,12 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({ title, column, children }) 
   )
 
   return (
-    <Card ref={drop} className="h-[100%] w-96">
-      <Card className="px-4 py-2">
-        <div className="flex items-center justify-between">
-          {title}
-          <KanbanDropdown column={column} />
-        </div>
-        <div className={classNames(!!children && 'mt-2', 'flex flex-col gap-y-1')}>{children}</div>
-      </Card>
+    <Card ref={drop} className="h-[100%] w-96 bg-opacity-90 px-4 py-2">
+      <div className="flex items-center justify-between text-background">
+        {title}
+        <KanbanDropdown column={column} />
+      </div>
+      <div className={classNames(!!children && 'mt-2', 'flex flex-col gap-y-1')}>{children}</div>
     </Card>
   )
 }

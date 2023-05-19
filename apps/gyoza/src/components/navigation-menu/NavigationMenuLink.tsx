@@ -1,4 +1,5 @@
 import { NavigationMenuLink as RadixNavigationMenuLink } from '@radix-ui/react-navigation-menu'
+import { classNames } from '@ramen/ui'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { forwardRef } from 'react'
@@ -12,13 +13,14 @@ export const NavigationMenuLink = forwardRef<
   const isActive = router.asPath === href
 
   return (
-    <Link
-      href={href}
-      className="rounded-16 focus-visible:outline-primary focus-visible:ring-2 focus-visible:ring-primary"
-    >
+    <Link href={href} className="rounded-16 py-2 focus-visible:outline-primary">
       <Typography
+        as="span"
         variant="md/regular"
-        className="text-background rounded-16 bg-transparent px-4 py-2 outline-none hover:bg-primary hover:bg-opacity-20"
+        className={classNames(
+          isActive ? '!bg-primary !text-background' : '',
+          'rounded-16 bg-transparent px-4 py-2 text-primary outline-none hover:bg-primary hover:bg-opacity-20'
+        )}
       >
         {children}
       </Typography>

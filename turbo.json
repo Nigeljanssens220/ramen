@@ -11,7 +11,8 @@
         "^build"
       ],
       "env": [
-        "SKIP_ENV_VALIDATION"
+        "SKIP_ENV_VALIDATION",
+        "NEXT_PUBLIC_ALCHEMY_KEY"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },

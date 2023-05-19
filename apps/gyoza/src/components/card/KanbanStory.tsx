@@ -16,12 +16,14 @@ const KanbanStory: React.FC<KanbanStoryProps> = ({ story }) => {
     utilities: { isDragging },
     drag,
   } = useKanbanStoryDrag({ story, type: ItemTypes.KANBANSTORY })
-  // const { drop } = useKanbanStoryDrop({ story, type: ItemTypes.KANBANSTORY })
 
   return (
     <Card
       ref={drag}
-      className={classNames(isDragging ? 'cursor-grabbing' : 'hover:cursor-grab', 'flex flex-col !rounded-8 px-4 py-2')}
+      className={classNames(
+        isDragging ? 'cursor-grabbing' : 'hover:cursor-grab',
+        'flex flex-col !rounded-8 !bg-background !bg-opacity-20 px-4 py-2'
+      )}
     >
       <div className="flex flex-col gap-y-2">
         <div className="flex items-center justify-between">
@@ -36,7 +38,7 @@ const KanbanStory: React.FC<KanbanStoryProps> = ({ story }) => {
       </div>
       <Typography as="span" variant="md/regular" className="flex items-center justify-end">
         {story.userAddress.slice(0, 4) + '...' + story.userAddress.slice(38)}
-        <UserCircleIcon className="ml-2 h-6 w-6 fill-primary" />
+        <UserCircleIcon className="ml-2 h-6 w-6 fill-background" />
       </Typography>
     </Card>
   )

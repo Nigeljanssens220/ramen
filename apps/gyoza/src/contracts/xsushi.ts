@@ -141,4 +141,4 @@ export const xSushiABI = [
     stateMutability: 'nonpayable',
     type: 'function',
   },
-] as const
+]

@@ -42,7 +42,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
         disabled={disabled}
         ref={ref}
-        className={classNames(className, buttonStyles({ fullWidth, disabled, size, variant: buttonVariant }))}
+        className={classNames(buttonStyles({ fullWidth, disabled, size, variant: buttonVariant }), className)}
       >
         {children}
       </button>

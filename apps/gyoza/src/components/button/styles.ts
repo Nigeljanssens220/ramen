@@ -6,8 +6,7 @@ export const BUTTON_STYLES = {
   primary: 'bg-secondary text-background hover:bg-opacity-80',
   secondary: 'bg-tertiary text-primary hover:bg-opacity-80',
   base: 'bg-transparent text-background hover:bg-background hover:bg-opacity-20',
-  inline:
-    'text-slate-500 hover:text-primary-600 focus:underline focus:decoration-slate-800 focus:underline-offset-4 active:text-slate-800 disabled:pointer-events-none disabled:text-primary-400',
+  inline: 'text-background hover:text-background/80 disabled:pointer-events-none disabled:text-background/20',
 } as const
 
 export const buttonStyles = cva(BASE_BUTTON_STYLES, {
@@ -26,7 +25,7 @@ export const buttonStyles = cva(BASE_BUTTON_STYLES, {
       true: 'w-full',
     },
     disabled: {
-      true: 'disabled:text-primary-400 pointer-events-none',
+      true: 'disabled:text-background/30 pointer-events-none',
     },
   },
   compoundVariants: [
