@@ -1,6 +1,7 @@
 import { useBalance } from '@/hooks/stake/useBalance'
 import { useIsMounted } from '@/hooks/useIsMounted'
 import Image from 'next/image'
+import Spinner from './spinner'
 import Typography from './typography/Typography'
 
 interface TokenBalanceProps {
@@ -18,12 +19,10 @@ const TokenBalance: React.FC<TokenBalanceProps> = ({ tokenAddress, imageSrc, lab
       <Typography variant="lg/regular">{label}</Typography>
       <div className="mt-4 flex items-center gap-x-4">
         <Image src={imageSrc} width={50} height={50} alt="token-logo" />
-        {isMounted && (
-          <div className="flex flex-col">
-            <Typography variant="md/regular">{Number(balance.formatted).toFixed(2)}</Typography>
-            <Typography variant="md/bold">{token.symbol}</Typography>
-          </div>
-        )}
+        <div className="flex flex-col">
+          <Typography variant="md/regular">{isMounted ? Number(balance.formatted).toFixed(2) : <Spinner />}</Typography>
+          <Typography variant="md/bold">{token.symbol}</Typography>
+        </div>
       </div>
     </div>
   )
