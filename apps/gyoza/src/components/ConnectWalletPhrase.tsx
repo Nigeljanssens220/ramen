@@ -1,7 +1,7 @@
-import Typography from './typography/Typography'
-import { WalletButton } from './wagmi/Profile'
+import { Typography } from '@ramen/ui'
+import { WalletButton } from './button/WalletButton'
 
-const ConnectWalletPhrase: React.FC = () => {
+export const ConnectWalletPhrase: React.FC = () => {
   return (
     <>
       <Typography as="h1" variant="xl/semibold" className="!text-primary">
@@ -11,5 +11,3 @@ const ConnectWalletPhrase: React.FC = () => {
     </>
   )
 }
-
-export default ConnectWalletPhrase

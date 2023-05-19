@@ -1,8 +1,7 @@
 import { useBalance } from '@/hooks/stake/useBalance'
 import { useIsMounted } from '@/hooks/useIsMounted'
+import { Spinner, Typography } from '@ramen/ui'
 import Image from 'next/image'
-import Spinner from './spinner'
-import Typography from './typography/Typography'
 
 interface TokenBalanceProps {
   tokenAddress?: `0x${string}`
@@ -11,7 +10,7 @@ interface TokenBalanceProps {
   symbol?: string
 }
 
-const TokenBalance: React.FC<TokenBalanceProps> = ({ tokenAddress, imageSrc, label, symbol }) => {
+export const TokenBalance: React.FC<TokenBalanceProps> = ({ tokenAddress, imageSrc, label, symbol }) => {
   const isMounted = useIsMounted()
   const { data: balance, error } = useBalance({ tokenAddress })
 
@@ -31,5 +30,3 @@ const TokenBalance: React.FC<TokenBalanceProps> = ({ tokenAddress, imageSrc, lab
     </div>
   )
 }
-
-export default TokenBalance

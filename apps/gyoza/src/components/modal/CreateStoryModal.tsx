@@ -2,18 +2,17 @@ import { useCreateStory } from '@/hooks/story/useCreateStory'
 import { CreateStorySchema, createStorySchema } from '@/server/api/schemas/story/createStory'
 import { PlusSmallIcon } from '@heroicons/react/24/solid'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Button, Modal } from '@ramen/ui'
 import { useCallback, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useAccount } from 'wagmi'
-import Button from '../button/Button'
 import { FormCreateStory } from '../form'
-import Modal from './Modal'
 
 export interface CreateStoryModalProps {
   columnId: string
 }
 
-const CreateStoryModal: React.FC<CreateStoryModalProps> = ({ columnId }) => {
+export const CreateStoryModal: React.FC<CreateStoryModalProps> = ({ columnId }) => {
   const [open, setOpen] = useState(false)
   const { address } = useAccount()
   const methods = useForm<CreateStorySchema>({
@@ -52,5 +51,3 @@ const CreateStoryModal: React.FC<CreateStoryModalProps> = ({ columnId }) => {
     </Modal>
   )
 }
-
-export default CreateStoryModal

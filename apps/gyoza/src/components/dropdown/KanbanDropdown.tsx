@@ -1,16 +1,13 @@
 import { Column } from '@prisma/client'
-import DropdownTriggerButton from '../button/DropdownTriggerButton'
-import CreateColumnModal from '../modal/CreateColumnModal'
-import CreateStoryModal from '../modal/CreateStoryModal'
-import DeleteColumnModal from '../modal/DeleteColumnModal'
-import UpdateColumnModal from '../modal/UpdateColumnModal'
-import { DropdownMenu } from './Dropdown'
+import { DropdownMenu } from '@ramen/ui'
+import { DropdownTriggerButton } from '../button'
+import { CreateColumnModal, CreateStoryModal, DeleteColumnModal, UpdateColumnModal } from '../modal'
 
 export interface KanbanDropdownProps {
   column: Column
 }
 
-const KanbanDropdown: React.FC<KanbanDropdownProps> = ({ column }) => {
+export const KanbanDropdown: React.FC<KanbanDropdownProps> = ({ column }) => {
   return (
     <DropdownMenu>
       <DropdownTriggerButton />
@@ -25,5 +22,3 @@ const KanbanDropdown: React.FC<KanbanDropdownProps> = ({ column }) => {
     </DropdownMenu>
   )
 }
-
-export default KanbanDropdown

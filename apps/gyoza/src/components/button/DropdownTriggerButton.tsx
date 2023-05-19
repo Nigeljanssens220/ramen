@@ -1,8 +1,7 @@
 import { EllipsisVerticalIcon } from '@heroicons/react/24/solid'
-import { DropdownMenuTrigger } from '../dropdown/Dropdown'
-import Button from './Button'
+import { Button, DropdownMenuTrigger } from '@ramen/ui'
 
-const DropdownTriggerButton: React.FC = () => {
+export const DropdownTriggerButton: React.FC = () => {
   return (
     <DropdownMenuTrigger asChild className="!px-1">
       <Button variant="md/base">
@@ -11,5 +10,3 @@ const DropdownTriggerButton: React.FC = () => {
     </DropdownMenuTrigger>
   )
 }
-
-export default DropdownTriggerButton

@@ -1,5 +1,5 @@
-import ConnectWalletPhrase from '@/components/ConnectWalletPhrase'
-import Kanban from '@/components/Kanban'
+import { ConnectWalletPhrase } from '@/components/ConnectWalletPhrase'
+import { Kanban } from '@/components/Kanban'
 import { useIsMounted } from '@/hooks/useIsMounted'
 import { type NextPage } from 'next'
 import Head from 'next/head'

@@ -5,7 +5,7 @@
   "types": "./index.tsx",
   "license": "MIT",
   "scripts": {
-    "build-tailwind": "pnpm tailwind build -i ./styles/globals.css -o ./index.css -c tailwind.config.cjs --minify",
+    "build-tailwind": "pnpm tailwind build -i ./styles/globals.css -o ./index.css -c tailwind.config.ts --minify",
     "lint": "eslint \"**/*.ts*\""
   },
   "devDependencies": {
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@ramen/tailwindcss-config": "workspace:^",
     "class-variance-authority": "^0.6.0",
     "next": "^13.4.1"
   }

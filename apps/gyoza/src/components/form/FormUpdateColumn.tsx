@@ -1,8 +1,7 @@
 import { UpdateColumnSchema } from '@/server/api/schemas/column/updateColumn'
+import { Button, Spinner } from '@ramen/ui'
 import { useFormContext } from 'react-hook-form'
-import Button from '../button/Button'
-import Spinner from '../spinner'
-import FormTextField from './elements/FormTextField'
+import { FormTextField } from './elements'
 
 interface FormUpdateColumnProps {
   onSubmit: (data: UpdateColumnSchema) => void

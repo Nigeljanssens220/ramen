@@ -3,17 +3,16 @@ import { UpdateStorySchema, updateStorySchema } from '@/server/api/schemas/story
 import { PencilIcon } from '@heroicons/react/24/solid'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Story } from '@prisma/client'
+import { Button, Modal } from '@ramen/ui'
 import { useCallback, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import Button from '../button/Button'
-import { FormUpdateStory } from '../form/FormUpdateStory'
-import Modal from './Modal'
+import { FormUpdateStory } from '../form'
 
 export interface UpdateStoryModalProps {
   story: Story
 }
 
-const UpdateStoryModal: React.FC<UpdateStoryModalProps> = ({ story }) => {
+export const UpdateStoryModal: React.FC<UpdateStoryModalProps> = ({ story }) => {
   const [open, setOpen] = useState(false)
   const methods = useForm<UpdateStorySchema>({
     resolver: zodResolver(updateStorySchema),
@@ -57,5 +56,3 @@ const UpdateStoryModal: React.FC<UpdateStoryModalProps> = ({ story }) => {
     </Modal>
   )
 }
-
-export default UpdateStoryModal

@@ -1,16 +1,15 @@
 import { ItemTypes } from '@/constants/itemTypes'
 import { Column } from '@prisma/client'
-import { classNames } from '@ramen/ui'
+import { Card, classNames } from '@ramen/ui'
 import { useDrop } from 'react-dnd'
-import KanbanDropdown from '../dropdown/KanbanDropdown'
-import Card from './Card'
+import { KanbanDropdown } from '../dropdown'
 
 interface KanbanColumnProps extends React.ComponentPropsWithoutRef<'div'> {
   title: string
   column: Column
 }
 
-const KanbanColumn: React.FC<KanbanColumnProps> = ({ title, column, children }) => {
+export const KanbanColumn: React.FC<KanbanColumnProps> = ({ title, column, children }) => {
   const [_, drop] = useDrop(
     () => ({
       accept: ItemTypes.KANBANSTORY,
@@ -32,5 +31,3 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({ title, column, children }) 
     </Card>
   )
 }
-
-export default KanbanColumn

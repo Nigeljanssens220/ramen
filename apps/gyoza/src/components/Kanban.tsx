@@ -1,11 +1,10 @@
 import { api } from '@/utils/api'
+import { Card } from '@ramen/ui'
 import { Ring } from '@uiball/loaders'
-import Card from './card/Card'
-import KanbanColumn from './card/KanbanColumn'
-import KanbanStory from './card/KanbanStory'
-import CreateColumnModal from './modal/CreateColumnModal'
+import { KanbanColumn, KanbanStory } from './card'
+import { CreateColumnModal } from './modal'
 
-const Kanban: React.FC = () => {
+export const Kanban: React.FC = () => {
   const { data: kanbanColumns, isLoading } = api.column.getAll.useQuery()
 
   return (
@@ -37,5 +36,3 @@ const Kanban: React.FC = () => {
     </>
   )
 }
-
-export default Kanban

@@ -1,16 +1,13 @@
 import { useDeleteStory } from '@/hooks/story/useDeleteStory'
 import { TrashIcon } from '@heroicons/react/24/solid'
+import { Button, Modal, Spinner, Typography } from '@ramen/ui'
 import { useCallback, useState } from 'react'
-import Button from '../button/Button'
-import Spinner from '../spinner'
-import Typography from '../typography/Typography'
-import Modal from './Modal'
 
 interface DeleteStoryModalProps {
   storyId: number
 }
 
-const DeleteStoryModal: React.FC<DeleteStoryModalProps> = ({ storyId }) => {
+export const DeleteStoryModal: React.FC<DeleteStoryModalProps> = ({ storyId }) => {
   const [open, setOpen] = useState(false)
   const {
     deleteStory: { isLoading },
@@ -45,5 +42,3 @@ const DeleteStoryModal: React.FC<DeleteStoryModalProps> = ({ storyId }) => {
     </Modal>
   )
 }
-
-export default DeleteStoryModal

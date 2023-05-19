@@ -2,14 +2,13 @@ import { useCreateColumn } from '@/hooks/column/useCreateColumn'
 import { CreateColumnSchema, createColumnSchema } from '@/server/api/schemas/column/createColumn'
 import { PlusSmallIcon } from '@heroicons/react/24/solid'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Button, Modal } from '@ramen/ui'
 import { useCallback, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useAccount } from 'wagmi'
-import Button from '../button/Button'
 import { FormCreateColumn } from '../form'
-import Modal from './Modal'
 
-const CreateColumnModal: React.FC = () => {
+export const CreateColumnModal: React.FC = () => {
   const [open, setOpen] = useState(false)
   const { address } = useAccount()
   const methods = useForm<CreateColumnSchema>({
@@ -48,5 +47,3 @@ const CreateColumnModal: React.FC = () => {
     </Modal>
   )
 }
-
-export default CreateColumnModal

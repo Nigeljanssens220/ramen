@@ -1,9 +1,8 @@
 import { useIsMounted } from '@/hooks/useIsMounted'
+import { Button, DropdownMenu } from '@ramen/ui'
 import { useConnect } from 'wagmi'
-import Button from '../button/Button'
-import { DropdownMenu } from './Dropdown'
 
-const ConnectWallet: React.FC = () => {
+export const ConnectWallet: React.FC = () => {
   const isMounted = useIsMounted()
   const { connect, connectors, isLoading, pendingConnector } = useConnect()
 
@@ -35,5 +34,3 @@ const ConnectWallet: React.FC = () => {
     </DropdownMenu>
   )
 }
-
-export default ConnectWallet

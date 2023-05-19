@@ -6,12 +6,9 @@ import { useBalance } from '@/hooks/stake/useBalance'
 import { useStake } from '@/hooks/stake/useStake'
 import { useIsMounted } from '@/hooks/useIsMounted'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid'
-import { classNames } from '@ramen/ui'
+import { Button, NumberField, Typography, classNames } from '@ramen/ui'
 import { useState } from 'react'
 import { parseEther } from 'viem'
-import Button from '../button/Button'
-import NumberField from '../numberfield/NumberField'
-import Typography from '../typography/Typography'
 
 interface FormStakeProps {
   tokenAddress: `0x${string}`

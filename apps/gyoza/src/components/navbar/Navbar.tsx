@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import NavMenu from '../navigation-menu/NavMenu'
-import { WalletButton } from '../wagmi/Profile'
+import { WalletButton } from '../button'
+import { NavMenu } from '../navigation-menu'
 
-const Navbar: React.FC = () => {
+export const Navbar: React.FC = () => {
   return (
-    <nav className="to-background fixed top-0 flex w-screen items-center justify-between bg-gradient-to-b from-primary/10 py-4 pl-12 pr-4 text-primary">
+    <nav className="fixed top-0 flex w-screen items-center justify-between bg-gradient-to-b from-primary/10 to-background py-4 pl-12 pr-4 text-primary">
       <Link className="flex items-center gap-x-4" href="/">
         <Image src="/ramen.png" alt="Ramen bowl" width={32} height={32} />
         Ramen
@@ -17,5 +17,3 @@ const Navbar: React.FC = () => {
     </nav>
   )
 }
-
-export default Navbar

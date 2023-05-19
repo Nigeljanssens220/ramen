@@ -1,7 +1,6 @@
-import { INPUT_STYLES, ROOT_INPUT_STYLES } from '@/components/textfield/styles'
-import Typography from '@/components/typography/Typography'
 import { ErrorMessage } from '@hookform/error-message'
-import { classNames } from '@ramen/ui'
+import { Typography, classNames } from '@ramen/ui'
+import { INPUT_STYLES, ROOT_INPUT_STYLES } from '@ramen/ui/textfield/styles'
 import { useEffect, useId } from 'react'
 import { useFormContext } from 'react-hook-form'
 
@@ -14,7 +13,7 @@ interface FormTextFieldProps extends React.ComponentPropsWithoutRef<'input'> {
   placeholder?: string
 }
 
-const FormTextField: React.FC<FormTextFieldProps> = ({
+export const FormTextField: React.FC<FormTextFieldProps> = ({
   name,
   id = '',
   className,
@@ -71,5 +70,3 @@ const FormTextField: React.FC<FormTextFieldProps> = ({
     </div>
   )
 }
-
-export default FormTextField

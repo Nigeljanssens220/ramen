@@ -1,9 +1,8 @@
 import { ErrorMessage } from '@hookform/error-message'
-import { classNames } from '@ramen/ui'
+import { Typography, classNames } from '@ramen/ui'
+import { INPUT_STYLES, ROOT_INPUT_STYLES } from '@ramen/ui/textfield/styles'
 import { useEffect, useId } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { INPUT_STYLES, ROOT_INPUT_STYLES } from '../../textfield/styles'
-import Typography from '../../typography/Typography'
 
 interface FormTextAreaProps extends React.ComponentPropsWithoutRef<'textarea'> {
   name: string
@@ -14,7 +13,7 @@ interface FormTextAreaProps extends React.ComponentPropsWithoutRef<'textarea'> {
   placeholder?: string
 }
 
-const FormTextArea: React.FC<FormTextAreaProps> = ({
+export const FormTextArea: React.FC<FormTextAreaProps> = ({
   name,
   id = '',
   className,
@@ -70,5 +69,3 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
     </div>
   )
 }
-
-export default FormTextArea

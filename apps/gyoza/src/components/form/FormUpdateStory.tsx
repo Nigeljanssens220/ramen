@@ -1,9 +1,7 @@
 import { UpdateStorySchema } from '@/server/api/schemas/story/updateStory'
+import { Button, Spinner } from '@ramen/ui'
 import { useFormContext } from 'react-hook-form'
-import Button from '../button/Button'
-import Spinner from '../spinner'
-import FormTextArea from './elements/FormTextArea'
-import FormTextField from './elements/FormTextField'
+import { FormTextArea, FormTextField } from './elements'
 
 interface FormUpdateStoryProps {
   onSubmit: (data: UpdateStorySchema) => void

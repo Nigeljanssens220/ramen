@@ -3,17 +3,16 @@ import { UpdateColumnSchema, updateColumnSchema } from '@/server/api/schemas/col
 import { PencilIcon } from '@heroicons/react/24/solid'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Column } from '@prisma/client'
+import { Button, Modal } from '@ramen/ui'
 import { useCallback, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import Button from '../button/Button'
-import { FormUpdateColumn } from '../form/FormUpdateColumn'
-import Modal from './Modal'
+import { FormUpdateColumn } from '../form'
 
 export interface UpdateColumnModalProps {
   column: Column
 }
 
-const UpdateColumnModal: React.FC<UpdateColumnModalProps> = ({ column }) => {
+export const UpdateColumnModal: React.FC<UpdateColumnModalProps> = ({ column }) => {
   const [open, setOpen] = useState(false)
   const methods = useForm<UpdateColumnSchema>({
     resolver: zodResolver(updateColumnSchema),
@@ -53,5 +52,3 @@ const UpdateColumnModal: React.FC<UpdateColumnModalProps> = ({ column }) => {
     </Modal>
   )
 }
-
-export default UpdateColumnModal

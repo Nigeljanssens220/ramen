@@ -1,14 +1,12 @@
 import { SUSHI_ADDRESS, XSUSHI_ADDRESS } from '@/constants/sushi'
 import { useIsMounted } from '@/hooks/useIsMounted'
+import { Card, Heading, Tabs } from '@ramen/ui'
 import { useToken } from 'wagmi'
-import TokenBalance from './TokenBalance'
-import Card from './card/Card'
+import { TokenBalance } from './TokenBalance'
 import { FormStake } from './form/FormStake'
 import { FormUnstake } from './form/FormUnstake'
-import Heading from './heading/Heading'
-import Tabs from './tabs/Tabs'
 
-const StakeUnstake: React.FC = () => {
+export const StakeUnstake: React.FC = () => {
   const isMounted = useIsMounted()
   const { data: sushiMetadata } = useToken({
     address: SUSHI_ADDRESS, // normally we pass this along via page props or some other non-hardcoded way
@@ -45,5 +43,3 @@ const StakeUnstake: React.FC = () => {
     </div>
   )
 }
-
-export default StakeUnstake

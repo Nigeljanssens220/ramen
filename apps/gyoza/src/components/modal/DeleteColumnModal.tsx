@@ -1,16 +1,13 @@
 import { useDeleteColumn } from '@/hooks/column/useDeleteColumn'
 import { TrashIcon } from '@heroicons/react/24/solid'
+import { Button, Modal, Spinner, Typography } from '@ramen/ui'
 import { useCallback, useState } from 'react'
-import Button from '../button/Button'
-import Spinner from '../spinner'
-import Typography from '../typography/Typography'
-import Modal from './Modal'
 
 interface DeleteColumnModalProps {
   columnId: string
 }
 
-const DeleteColumnModal: React.FC<DeleteColumnModalProps> = ({ columnId }) => {
+export const DeleteColumnModal: React.FC<DeleteColumnModalProps> = ({ columnId }) => {
   const [open, setOpen] = useState(false)
   const {
     deleteColumn: { isLoading },
@@ -45,5 +42,3 @@ const DeleteColumnModal: React.FC<DeleteColumnModalProps> = ({ columnId }) => {
     </Modal>
   )
 }
-
-export default DeleteColumnModal

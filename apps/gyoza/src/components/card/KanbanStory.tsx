@@ -2,16 +2,14 @@ import { ItemTypes } from '@/constants/itemTypes'
 import { useKanbanStoryDrag } from '@/hooks/dnd/useKanbanStoryDrag'
 import { UserCircleIcon } from '@heroicons/react/24/solid'
 import { Story } from '@prisma/client'
-import { classNames } from '@ramen/ui'
-import StoryDropdown from '../dropdown/StoryDropdown'
-import Typography from '../typography/Typography'
-import Card from './Card'
+import { Card, Typography, classNames } from '@ramen/ui'
+import { StoryDropdown } from '../dropdown'
 
 interface KanbanStoryProps {
   story: Story
 }
 
-const KanbanStory: React.FC<KanbanStoryProps> = ({ story }) => {
+export const KanbanStory: React.FC<KanbanStoryProps> = ({ story }) => {
   const {
     utilities: { isDragging },
     drag,
@@ -43,5 +41,3 @@ const KanbanStory: React.FC<KanbanStoryProps> = ({ story }) => {
     </Card>
   )
 }
-
-export default KanbanStory

@@ -1,6 +1,5 @@
-import { buttonStyles } from '@/components/button/styles'
-import Heading from '@/components/heading/Heading'
-import Typography from '@/components/typography/Typography'
+import { Heading, Typography } from '@ramen/ui'
+import { buttonStyles } from '@ramen/ui/button/styles'
 import { type NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'

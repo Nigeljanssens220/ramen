@@ -1,9 +1,8 @@
 import { useIsMounted } from '@/hooks/useIsMounted'
 import { useAccount } from 'wagmi'
-import ConnectWallet from '../dropdown/ConnectWallet'
-import ConnectedWallet from '../dropdown/ConnectedWallet'
+import { ConnectWallet, ConnectedWallet } from '../dropdown'
 
-export const WalletButton = () => {
+export const WalletButton: React.FC = () => {
   const isMounted = useIsMounted()
   const { isConnected } = useAccount()
 

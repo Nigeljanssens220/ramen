@@ -1,8 +1,6 @@
-import NavigationMenu from './NavigationMenu'
+import { NavigationMenu } from '@ramen/ui'
 
-interface NavMenuProps {}
-
-const NavMenu: React.FC<NavMenuProps> = ({}) => {
+export const NavMenu: React.FC = () => {
   return (
     <NavigationMenu>
       <NavigationMenu.List>
@@ -16,5 +14,3 @@ const NavMenu: React.FC<NavMenuProps> = ({}) => {
     </NavigationMenu>
   )
 }
-
-export default NavMenu

@@ -1,5 +1,5 @@
-import ConnectWalletPhrase from '@/components/ConnectWalletPhrase'
-import StakeUnstake from '@/components/StakeUnstake'
+import { ConnectWalletPhrase } from '@/components/ConnectWalletPhrase'
+import { StakeUnstake } from '@/components/StakeUnstake'
 import { useIsMounted } from '@/hooks/useIsMounted'
 import { type NextPage } from 'next'
 import Head from 'next/head'
