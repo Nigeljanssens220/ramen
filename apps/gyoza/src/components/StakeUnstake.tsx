@@ -1,6 +1,6 @@
 import { SUSHI_ADDRESS, XSUSHI_ADDRESS } from '@/constants/sushi'
 import { useIsMounted } from '@/hooks/useIsMounted'
-import { useAccount, useToken } from 'wagmi'
+import { useToken } from 'wagmi'
 import TokenBalance from './TokenBalance'
 import Card from './card/Card'
 import { FormStake } from './form/FormStake'
@@ -10,7 +10,6 @@ import Tabs from './tabs/Tabs'
 
 const StakeUnstake: React.FC = () => {
   const isMounted = useIsMounted()
-  const { address: userAddress } = useAccount()
   const { data: sushiMetadata } = useToken({
     address: SUSHI_ADDRESS, // normally we pass this along via page props or some other non-hardcoded way
   })
@@ -38,26 +37,10 @@ const StakeUnstake: React.FC = () => {
         )}
       </Card>
       <Card className="flex flex-col gap-y-8 px-6 pb-16 pt-4">
-        <Heading variant="light">Balance</Heading>
-        {isMounted && (
-          <TokenBalance
-            label="STAKED"
-            imageSrc="/xsushi-logo.png"
-            //@ts-ignore
-            tokenAddress={isMounted && xsushiMetadata.address}
-            userAddress={userAddress}
-          />
-        )}
+        <Heading variant="light">Balance</Heading>{' '}
+        {isMounted && <TokenBalance label="STAKED" imageSrc="/xsushi-logo.png" tokenAddress={xsushiMetadata.address} />}
         <hr className="bg-primary" />
-        {isMounted && (
-          <TokenBalance
-            label="UNSTAKED"
-            imageSrc="/sushi-logo.png"
-            //@ts-ignore
-            tokenAddress={isMounted && sushiMetadata.address}
-            userAddress={userAddress}
-          />
-        )}
+        {isMounted && <TokenBalance label="UNSTAKED" imageSrc="/sushi-logo.png" tokenAddress={sushiMetadata.address} />}
       </Card>
     </div>
   )

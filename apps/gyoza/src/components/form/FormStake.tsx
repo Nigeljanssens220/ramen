@@ -4,6 +4,7 @@ import { useAllowance } from '@/hooks/stake/useAllowance'
 import { useApproval } from '@/hooks/stake/useApproval'
 import { useBalance } from '@/hooks/stake/useBalance'
 import { useStake } from '@/hooks/stake/useStake'
+import { useIsMounted } from '@/hooks/useIsMounted'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid'
 import { classNames } from '@ramen/ui'
 import { useState } from 'react'
@@ -18,6 +19,7 @@ interface FormStakeProps {
 }
 
 export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddress }) => {
+  const isMounted = useIsMounted()
   const [stakeAmount, setStakeAmount] = useState<string | null>()
   const { data: allowance } = useAllowance({
     spenderAddress,
@@ -32,7 +34,7 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
     tokenAddress,
     abi: xSushiABI,
   })
-  const { balance } = useBalance({ tokenAddress })
+  const { data: balance } = useBalance({ tokenAddress })
   const { contract: stake, error: stakeError } = useStake({
     abi: xSushiABI,
     amount,
@@ -47,11 +49,11 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
     <div className="flex h-full w-full flex-col justify-between gap-y-1">
       <div className="flex w-full flex-col items-end gap-y-1">
         <Button variant="sm/inline" className="!p-0" onClick={() => setStakeAmount(balance.formatted)}>
-          Max. {Number(balance.formatted).toFixed(2)}
+          Max. {isMounted && Number(balance.formatted).toFixed(2)}
         </Button>
         <NumberField
           className="w-full"
-          inlineName={balance.symbol}
+          inlineName={isMounted && balance.symbol}
           error={stakeAmountExceedsAllowance}
           value={stakeAmount}
           placeholder={'0'}

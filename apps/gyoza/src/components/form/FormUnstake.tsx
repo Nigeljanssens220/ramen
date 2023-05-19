@@ -1,6 +1,7 @@
 import { xSushiABI } from '@/contracts/xsushi'
 import { useBalance } from '@/hooks/stake/useBalance'
 import { useUnstake } from '@/hooks/stake/useUnstake'
+import { useIsMounted } from '@/hooks/useIsMounted'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid'
 import { classNames } from '@ramen/ui'
 import { useState } from 'react'
@@ -14,11 +15,12 @@ interface FormUnstakeProps {
 }
 
 export const FormUnstake: React.FC<FormUnstakeProps> = ({ unstakeTokenAddress }) => {
+  const isMounted = useIsMounted()
   const [unstakeAmount, setUnstakeAmount] = useState<string | null>()
 
   const amount = Boolean(unstakeAmount) ? parseEther(`${parseFloat(unstakeAmount)}`) : parseEther(`${0}`)
 
-  const { balance } = useBalance({ tokenAddress: unstakeTokenAddress })
+  const { data: balance } = useBalance({ tokenAddress: unstakeTokenAddress })
   const { contract: unstake, error: unstakeError } = useUnstake({
     abi: xSushiABI,
     amount,
@@ -37,11 +39,11 @@ export const FormUnstake: React.FC<FormUnstakeProps> = ({ unstakeTokenAddress })
           disabled={amount === BigInt(0)}
           onClick={() => setUnstakeAmount(balance.formatted)}
         >
-          Max. {Number(balance.formatted).toFixed(2)}
+          Max. {isMounted && Number(balance.formatted).toFixed(2)}
         </Button>
         <NumberField
           className="w-full"
-          inlineName={balance.symbol}
+          inlineName={isMounted && balance.symbol}
           error={unstakeAmountExceedsBalance}
           value={unstakeAmount}
           placeholder={'0'}

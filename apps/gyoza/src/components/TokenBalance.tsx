@@ -8,11 +8,12 @@ interface TokenBalanceProps {
   tokenAddress?: `0x${string}`
   imageSrc?: string
   label?: string
+  symbol?: string
 }
 
-const TokenBalance: React.FC<TokenBalanceProps> = ({ tokenAddress, imageSrc, label }) => {
+const TokenBalance: React.FC<TokenBalanceProps> = ({ tokenAddress, imageSrc, label, symbol }) => {
   const isMounted = useIsMounted()
-  const { token, balance, error } = useBalance({ tokenAddress })
+  const { data: balance, error } = useBalance({ tokenAddress })
 
   console.log(balance)
   console.log(error)
@@ -24,7 +25,7 @@ const TokenBalance: React.FC<TokenBalanceProps> = ({ tokenAddress, imageSrc, lab
         <Image src={imageSrc} width={50} height={50} alt="token-logo" />
         <div className="flex flex-col">
           <Typography variant="md/regular">{isMounted ? Number(balance.formatted).toFixed(2) : <Spinner />}</Typography>
-          <Typography variant="md/bold">{token.symbol}</Typography>
+          <Typography variant="md/bold">{symbol}</Typography>
         </div>
       </div>
     </div>
