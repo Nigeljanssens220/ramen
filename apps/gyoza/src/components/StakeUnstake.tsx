@@ -36,9 +36,23 @@ export const StakeUnstake: React.FC = () => {
       </Card>
       <Card className="flex flex-col gap-y-8 px-6 pb-16 pt-4">
         <Heading variant="light">Balance</Heading>{' '}
-        {isMounted && <TokenBalance label="STAKED" imageSrc="/xsushi-logo.png" tokenAddress={xsushiMetadata.address} />}
+        {isMounted && (
+          <TokenBalance
+            label="STAKED"
+            imageSrc="/xsushi-logo.png"
+            tokenAddress={xsushiMetadata.address}
+            symbol={xsushiMetadata.symbol}
+          />
+        )}
         <hr className="bg-primary" />
-        {isMounted && <TokenBalance label="UNSTAKED" imageSrc="/sushi-logo.png" tokenAddress={sushiMetadata.address} />}
+        {isMounted && (
+          <TokenBalance
+            label="UNSTAKED"
+            imageSrc="/sushi-logo.png"
+            tokenAddress={sushiMetadata.address}
+            symbol={sushiMetadata.symbol}
+          />
+        )}
       </Card>
     </div>
   )
