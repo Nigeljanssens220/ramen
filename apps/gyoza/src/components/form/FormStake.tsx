@@ -44,7 +44,7 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
 
   return (
     <div className="flex h-full w-full flex-col justify-between gap-y-1">
-      <div className="flex w-full flex-col items-end gap-y-1">
+      <div className="flex w-full flex-col items-end gap-y-1 text-start">
         <Button variant="sm/inline" className="!p-0" onClick={() => setStakeAmount(balance.formatted)}>
           Max. {isMounted && Number(balance.formatted).toFixed(2)}
         </Button>
@@ -63,21 +63,23 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
           }
           onChange={(e) => setStakeAmount(e.currentTarget.value)}
         />
-        {stakeAmountExceedsAllowance && (
-          <Typography variant="md/regular" className="text-justify text-red-500">
-            Staking requires increasing your allowance.
-          </Typography>
-        )}
-        {stakeAmountExceedsBalance && (
-          <Typography variant="md/regular" className="text-justify text-red-500">
-            Staking requires increasing your balance.
-          </Typography>
-        )}
       </div>
+      {stakeAmountExceedsAllowance && (
+        <Typography variant="md/regular" className="text-red-500">
+          Staking requires increasing your allowance.
+        </Typography>
+      )}
+      {stakeAmountExceedsBalance && (
+        <Typography variant="md/regular" className="text-red-500">
+          Staking requires increasing your balance.
+        </Typography>
+      )}
       {stakeAmountExceedsAllowance ? (
-        <Button onClick={() => approval.write?.()}>Increase allowance</Button>
+        <Button className="rounded-8" onClick={() => approval.write?.()}>
+          Increase allowance
+        </Button>
       ) : (
-        <Button disabled={isError} onClick={() => stake.write?.()}>
+        <Button className="rounded-8" disabled={isError} onClick={() => stake.write?.()}>
           Stake
         </Button>
       )}

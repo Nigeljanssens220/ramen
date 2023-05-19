@@ -53,9 +53,13 @@ export const FormUnstake: React.FC<FormUnstakeProps> = ({ unstakeTokenAddress })
           }
           onChange={(e) => setUnstakeAmount(e.currentTarget.value)}
         />
-        <Typography variant="md/regular">Fee: 0.00</Typography>
       </div>
-      <Button disabled={isError} onClick={() => unstake.write?.()}>
+      {unstakeAmountExceedsBalance && (
+        <Typography variant="md/regular" className="text-justify text-red-500">
+          The amount you are trying to unstake exceeds your balance.
+        </Typography>
+      )}
+      <Button className="rounded-8" disabled={isError} onClick={() => unstake.write?.()}>
         Unstake
       </Button>
     </div>
