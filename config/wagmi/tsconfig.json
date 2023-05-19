@@ -1,0 +1,6 @@
+{
+  "extends": "@ramen/typescript-config/nextjs.json",
+  "compilerOptions": {},
+  "include": ["index.ts"],
+  "exclude": ["node_modules"]
+}

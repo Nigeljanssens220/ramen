@@ -46,6 +46,7 @@
     "@ramen/prettier-config": "workspace:^",
     "@ramen/tailwindcss-config": "workspace:^",
     "@ramen/typescript-config": "workspace:^",
+    "@ramen/wagmi-config": "workspace:^",
     "@types/eslint": "^8.21.3",
     "@types/node": "^18.15.5",
     "@types/prettier": "^2.7.2",

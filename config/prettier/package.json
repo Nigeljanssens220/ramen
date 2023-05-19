@@ -6,7 +6,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@ramen/eslint-config": "workspace:^",
     "@ramen/typescript-config": "workspace:^",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.2.6"
