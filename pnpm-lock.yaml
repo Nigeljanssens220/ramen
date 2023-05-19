@@ -4,6 +4,9 @@ importers:
 
   .:
     devDependencies:
+      '@ramen/eslint-config':
+        specifier: workspace:^
+        version: link:config/eslint
       eslint:
         specifier: ^7.32.0
         version: 7.32.0

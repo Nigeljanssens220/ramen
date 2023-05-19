@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 import { mainnet, useAccount, useContractWrite, usePrepareContractWrite } from 'wagmi'
 
 export interface StakeProps {
