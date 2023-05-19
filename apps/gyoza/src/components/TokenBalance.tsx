@@ -14,9 +14,6 @@ export const TokenBalance: React.FC<TokenBalanceProps> = ({ tokenAddress, imageS
   const isMounted = useIsMounted()
   const { data: balance, error } = useBalance({ tokenAddress })
 
-  console.log(balance)
-  console.log(error)
-
   return (
     <div className="flex flex-col items-start">
       <Typography variant="lg/regular">{label}</Typography>

@@ -50,7 +50,7 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
         </Button>
         <NumberField
           className="w-full"
-          inlineName={isMounted && balance.symbol}
+          inlineName={balance.symbol}
           error={stakeAmountExceedsAllowance || stakeAmountExceedsBalance}
           value={stakeAmount}
           placeholder={'0'}

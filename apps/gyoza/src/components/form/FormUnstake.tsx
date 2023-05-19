@@ -40,7 +40,7 @@ export const FormUnstake: React.FC<FormUnstakeProps> = ({ unstakeTokenAddress })
         </Button>
         <NumberField
           className="w-full"
-          inlineName={isMounted && balance.symbol}
+          inlineName={balance.symbol}
           error={unstakeAmountExceedsBalance}
           value={unstakeAmount}
           placeholder={'0'}
