@@ -40,7 +40,7 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
 
   const stakeAmountExceedsAllowance = Boolean(stakeAmount) && amount > (allowance as bigint)
   const stakeAmountExceedsBalance = Boolean(stakeAmount) && amount > balance.value
-  const isError = Boolean(error) || Boolean(stakeError) || stakeAmountExceedsBalance || amount === BigInt(0)
+  const isError = Boolean(error) || Boolean(stakeError) || stakeAmountExceedsBalance
 
   return (
     <div className="flex h-full w-full flex-col justify-between gap-y-1">
@@ -51,13 +51,16 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
         <NumberField
           className="w-full"
           inlineName={isMounted && balance.symbol}
-          error={stakeAmountExceedsAllowance}
+          error={stakeAmountExceedsAllowance || stakeAmountExceedsBalance}
           value={stakeAmount}
           placeholder={'0'}
           startIcon={
             <div className="mr-2 w-4">
               <ExclamationTriangleIcon
-                className={classNames(stakeAmountExceedsAllowance ? '' : 'hidden', 'h-4 w-4 text-red-500')}
+                className={classNames(
+                  stakeAmountExceedsAllowance || stakeAmountExceedsBalance ? '' : 'hidden',
+                  'h-4 w-4 text-red-500'
+                )}
               />
             </div>
           }
@@ -79,7 +82,7 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
           Increase allowance
         </Button>
       ) : (
-        <Button className="rounded-8" disabled={isError} onClick={() => stake.write?.()}>
+        <Button className="rounded-8" disabled={amount === BigInt(0) || isError} onClick={() => stake.write?.()}>
           Stake
         </Button>
       )}
