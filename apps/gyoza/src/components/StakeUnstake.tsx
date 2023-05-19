@@ -39,21 +39,25 @@ const StakeUnstake: React.FC = () => {
       </Card>
       <Card className="flex flex-col gap-y-8 px-6 pb-16 pt-4">
         <Heading variant="light">Balance</Heading>
-        <TokenBalance
-          label="STAKED"
-          imageSrc="/xsushi-logo.png"
-          //@ts-ignore
-          tokenAddress={isMounted && xsushiMetadata.address}
-          userAddress={userAddress}
-        />
+        {isMounted && (
+          <TokenBalance
+            label="STAKED"
+            imageSrc="/xsushi-logo.png"
+            //@ts-ignore
+            tokenAddress={isMounted && xsushiMetadata.address}
+            userAddress={userAddress}
+          />
+        )}
         <hr className="bg-primary" />
-        <TokenBalance
-          label="UNSTAKED"
-          imageSrc="/sushi-logo.png"
-          //@ts-ignore
-          tokenAddress={isMounted && sushiMetadata.address}
-          userAddress={userAddress}
-        />
+        {isMounted && (
+          <TokenBalance
+            label="UNSTAKED"
+            imageSrc="/sushi-logo.png"
+            //@ts-ignore
+            tokenAddress={isMounted && sushiMetadata.address}
+            userAddress={userAddress}
+          />
+        )}
       </Card>
     </div>
   )
