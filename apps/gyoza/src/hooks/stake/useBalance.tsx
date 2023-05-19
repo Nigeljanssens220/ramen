@@ -1,7 +1,7 @@
 import { mainnet, useAccount, useBalance as useBalanceWagmi } from 'wagmi'
 
 export interface BalanceProps {
-  tokenAddress: `0x${string}`
+  tokenAddress?: string
 }
 
 export const useBalance = ({ tokenAddress }: BalanceProps) => {
@@ -10,6 +10,7 @@ export const useBalance = ({ tokenAddress }: BalanceProps) => {
   return useBalanceWagmi({
     address: userAddress,
     chainId: mainnet.id,
-    token: tokenAddress,
+    token: tokenAddress as `0x${string}`,
+    enabled: Boolean(userAddress) && Boolean(tokenAddress),
   })
 }

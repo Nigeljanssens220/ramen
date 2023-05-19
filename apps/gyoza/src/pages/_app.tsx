@@ -1,7 +1,7 @@
 import { Navbar } from '@/components/navbar'
+import { wagmiConfig } from '@/server/wagmi/config'
 import '@/styles/globals.css'
 import { api } from '@/utils/api'
-import { wagmiConfig } from '@ramen/wagmi-config'
 import { type AppType } from 'next/app'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'

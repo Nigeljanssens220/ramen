@@ -18,7 +18,7 @@ export const useUnstake = ({ abi, amount, tokenAddress }: StakeProps) => {
     functionName: 'leave',
     args: [amount],
     account: userAddress,
-    enabled: Boolean(amount),
+    enabled: Boolean(amount) && Boolean(tokenAddress),
   })
 
   const contract = useContractWrite(config)

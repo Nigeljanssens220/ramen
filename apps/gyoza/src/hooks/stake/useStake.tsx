@@ -4,7 +4,7 @@ import { mainnet, useAccount, useContractWrite, usePrepareContractWrite } from '
 
 export interface StakeProps {
   abi: unknown[]
-  tokenAddress: `0x${string}`
+  tokenAddress?: string
   amount: bigint
 }
 
@@ -18,7 +18,7 @@ export const useStake = ({ abi, amount, tokenAddress }: StakeProps) => {
     functionName: 'enter',
     args: [amount],
     account: userAddress,
-    enabled: Boolean(amount),
+    enabled: Boolean(amount) && Boolean(userAddress) && Boolean(tokenAddress),
   })
 
   const contract = useContractWrite(config)

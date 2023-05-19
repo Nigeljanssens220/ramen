@@ -15,5 +15,6 @@ export const useAllowance = ({ abi, spenderAddress, tokenAddress }: AllowancePro
     args: [userAddress, spenderAddress],
     chainId: mainnet.id,
     functionName: 'allowance',
+    enabled: Boolean(userAddress) && Boolean(spenderAddress) && Boolean(tokenAddress),
   })
 }
