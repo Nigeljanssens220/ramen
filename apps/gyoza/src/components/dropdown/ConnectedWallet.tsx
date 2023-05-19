@@ -9,9 +9,9 @@ export const ConnectedWallet: React.FC = () => {
     <DropdownMenu>
       <DropdownMenu.Trigger
         asChild
-        className="rounded bg-secondary p-1 shadow-100 data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=top]:animate-slideDownAndFade"
+        className="rounded bg-secondary p-1 px-4 shadow-100 data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=top]:animate-slideDownAndFade xs:px-8"
       >
-        <Button className="rounded-16 sm:px-[22px]">
+        <Button>
           <span className="hidden sm:block">{address.slice(0, 4) + '...' + address.slice(38)}</span>
           <span className="sm:hidden">{address.slice(0, 4) + '...' + address.slice(40)}</span>
         </Button>
