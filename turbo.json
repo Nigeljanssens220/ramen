@@ -12,7 +12,8 @@
       ],
       "env": [
         "SKIP_ENV_VALIDATION",
-        "NEXT_PUBLIC_ALCHEMY_KEY"
+        "NEXT_PUBLIC_ALCHEMY_KEY",
+        "ACLHEMY_KEY"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },

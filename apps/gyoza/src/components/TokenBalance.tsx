@@ -12,7 +12,10 @@ interface TokenBalanceProps {
 
 const TokenBalance: React.FC<TokenBalanceProps> = ({ tokenAddress, imageSrc, label }) => {
   const isMounted = useIsMounted()
-  const { token, balance } = useBalance({ tokenAddress })
+  const { token, balance, error } = useBalance({ tokenAddress })
+
+  console.log(balance)
+  console.log(error)
 
   return (
     <div className="flex flex-col items-start">
