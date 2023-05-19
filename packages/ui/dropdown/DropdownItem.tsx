@@ -11,7 +11,7 @@ export const DropdownMenuItem = forwardRef<
   <RadixDropdownMenuItem
     ref={ref}
     className={classNames(
-      'hover:bg-background/20 relative flex cursor-default select-none items-center rounded-16 py-1.5 pl-4 outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+      'relative flex cursor-default select-none items-center rounded-16 py-1.5 pl-4 outline-none transition-colors hover:bg-background/20 data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
       inset && 'pl-8',
       className
     )}

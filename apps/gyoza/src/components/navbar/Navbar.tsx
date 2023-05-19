@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { WalletButton } from '../button'
+import MenuDropdown from '../dropdown/MenuDropdown'
 import { NavMenu } from '../navigation-menu'
 
 export const Navbar: React.FC = () => {
@@ -11,8 +12,9 @@ export const Navbar: React.FC = () => {
         Ramen
       </Link>
       <div className="flex items-center gap-x-4">
-        <NavMenu />
+        <NavMenu className="hidden sm:block" />
         <WalletButton />
+        <MenuDropdown className="sm:hidden" />
       </div>
     </nav>
   )

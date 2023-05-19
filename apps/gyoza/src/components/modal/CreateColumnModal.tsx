@@ -31,7 +31,7 @@ export const CreateColumnModal: React.FC = () => {
   return (
     <Modal open={open} onOpenChange={setOpen}>
       <Modal.Trigger asChild className="w-full">
-        <Button variant="md/base" className="hover:!bg-background hover:!bg-opacity-20">
+        <Button variant="md/primary" className="max-w-[200px] rounded bg-secondary p-1 shadow-100">
           <PlusSmallIcon className="mr-2 h-5 w-5" />
           Create column
         </Button>

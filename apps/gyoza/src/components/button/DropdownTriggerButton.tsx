@@ -1,9 +1,13 @@
 import { EllipsisVerticalIcon } from '@heroicons/react/24/solid'
-import { Button, DropdownMenuTrigger } from '@ramen/ui'
+import { Button, DropdownMenuTrigger, classNames } from '@ramen/ui'
 
-export const DropdownTriggerButton: React.FC = () => {
+interface Props {
+  className?: string
+}
+
+export const DropdownTriggerButton: React.FC<Props> = ({ className }) => {
   return (
-    <DropdownMenuTrigger asChild className="!px-1">
+    <DropdownMenuTrigger asChild className={classNames(className, '!px-1')}>
       <Button variant="md/base">
         <EllipsisVerticalIcon className="h-6 w-6 fill-background" />
       </Button>

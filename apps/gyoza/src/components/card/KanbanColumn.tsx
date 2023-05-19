@@ -22,7 +22,7 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({ title, column, child
   )
 
   return (
-    <Card ref={drop} className="h-[100%] w-96 bg-opacity-90 px-4 py-2">
+    <Card ref={drop} className="h-[100%] w-80 bg-opacity-90 px-4 py-2">
       <div className="flex items-center justify-between text-background">
         {title}
         <KanbanDropdown column={column} />

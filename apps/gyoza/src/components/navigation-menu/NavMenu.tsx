@@ -1,8 +1,12 @@
 import { NavigationMenu } from '@ramen/ui'
 
-export const NavMenu: React.FC = () => {
+interface Props {
+  className: string
+}
+
+export const NavMenu: React.FC<Props> = ({ className }) => {
   return (
-    <NavigationMenu>
+    <NavigationMenu className={className}>
       <NavigationMenu.List>
         <NavigationMenu.Item>
           <NavigationMenu.Link href="/stake">Stake</NavigationMenu.Link>

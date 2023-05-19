@@ -13,7 +13,7 @@ export const StakeUnstake: React.FC = () => {
   })
 
   return (
-    <div className="flex h-full w-full items-start justify-center gap-x-8">
+    <div className="flex h-full w-full flex-col items-start justify-center gap-y-2 p-4 sm:flex-row sm:gap-x-8">
       <Card className="flex flex-col justify-between gap-y-2 px-6 py-4">
         <Heading variant="light">
           Stake {sushiMetadata && sushiMetadata.symbol} & {xsushiMetadata && xsushiMetadata.symbol}
@@ -34,7 +34,7 @@ export const StakeUnstake: React.FC = () => {
           </Tabs.Content>
         </Tabs>
       </Card>
-      <Card className="flex flex-col gap-y-8 px-6 pb-16 pt-4">
+      <Card className="flex w-full flex-col items-center gap-y-8 px-6 py-6 sm:w-fit sm:items-start sm:pb-12">
         <Heading variant="light">Balance</Heading>
         <TokenBalance
           label="STAKED"
