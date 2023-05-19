@@ -1,11 +1,10 @@
 import { SUSHI_ADDRESS, XSUSHI_ADDRESS } from '@/constants/sushi'
 import { Card, Heading, Tabs } from '@ramen/ui'
-import { useAccount, useToken } from 'wagmi'
+import { useToken } from 'wagmi'
 import { TokenBalance } from './TokenBalance'
 import { FormStake, FormUnstake } from './form'
 
 export const StakeUnstake: React.FC = () => {
-  const { address: userAddress } = useAccount()
   const { data: sushiMetadata } = useToken({
     address: SUSHI_ADDRESS, // normally we pass this along via page props or some other non-hardcoded way
   })

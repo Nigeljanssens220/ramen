@@ -17,7 +17,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({ children, className }) =
       <main
         className={classNames(
           className,
-          'flex min-h-screen w-full flex-col items-center justify-start border border-background pt-64 text-primary'
+          'flex min-h-screen w-full flex-col items-center justify-center border border-background text-primary'
         )}
       >
         {children}

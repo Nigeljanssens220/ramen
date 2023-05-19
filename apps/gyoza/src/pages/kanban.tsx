@@ -8,11 +8,7 @@ import { useAccount } from 'wagmi'
 const KanbanPage: NextPage = () => {
   const isMounted = useIsMounted()
   const { isConnected } = useAccount()
-  return (
-    <PageLayout className="gap-y-2 !pt-20">
-      {isMounted && isConnected ? <Kanban /> : <ConnectWalletPhrase />}
-    </PageLayout>
-  )
+  return <PageLayout className="gap-y-2">{isMounted && isConnected ? <Kanban /> : <ConnectWalletPhrase />}</PageLayout>
 }
 
 export default KanbanPage
