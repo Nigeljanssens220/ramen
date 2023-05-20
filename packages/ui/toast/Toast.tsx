@@ -18,7 +18,7 @@ const ToastRoot = React.forwardRef<
     <RadixToastRoot
       ref={ref}
       className={classNames(
-        'group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-primary bg-background p-6 pr-8 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[state=closed]:animate-fadeOut data-[state=closed]:animate-fadeOut data-[state=closed]:animate-slideRightAndFade data-[state=open]:animate-fadeIn data-[state=open]:animate-slideInFromTop data-[swipe=end]:animate-fadeOut data-[swipe=move]:transition-none data-[state=open]:sm:animate-slideInFromBottom',
+        'group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-primary bg-background p-6 pr-8 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[state=closed]:animate-fadeOut data-[state=closed]:animate-slideRightAndFade data-[state=open]:animate-fadeIn data-[state=open]:animate-slideInFromTop data-[swipe=end]:animate-fadeOut data-[swipe=move]:transition-none data-[state=open]:sm:animate-slideInFromBottom',
         className
       )}
       {...props}
