@@ -43,15 +43,14 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(
           className={classNames(
             error ? '!text-red-600' : '',
             disabled ? 'disabled:bg-transparent' : '',
-            BASE_INPUT_STYLES,
-            'text-primary'
+            BASE_INPUT_STYLES
           )}
           pattern="^[0-9]*[.,]?[0-9]*$" // only numbers and one comma or dot
           ref={ref}
           disabled={disabled}
           {...rest}
         />
-        {inlineName && <span className="text-sm text-primary">{inlineName}</span>}
+        {inlineName && <span className="text-sm text-background">{inlineName}</span>}
         {endIcon && endIcon}
       </div>
     )
