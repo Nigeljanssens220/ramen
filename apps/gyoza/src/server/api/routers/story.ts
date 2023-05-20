@@ -1,14 +1,13 @@
 import { createTRPCRouter, publicProcedure } from '@/server/api/trpc'
-import { prisma } from '@/server/db'
 import { createStorySchema } from '../schemas/story/createStory'
 import { deleteStorySchema } from '../schemas/story/deleteStory'
 import { updateStorySchema } from '../schemas/story/updateStory'
 
 export const storyRouter = createTRPCRouter({
-  create: publicProcedure.input(createStorySchema).mutation(async ({ input }) => {
+  create: publicProcedure.input(createStorySchema).mutation(async ({ input, ctx }) => {
     const { title, content, userAddress, columnId } = input
 
-    return await prisma.story.create({
+    return await ctx.prisma.story.create({
       data: {
         title,
         content,
@@ -17,10 +16,10 @@ export const storyRouter = createTRPCRouter({
       },
     })
   }),
-  update: publicProcedure.input(updateStorySchema).mutation(async ({ input }) => {
+  update: publicProcedure.input(updateStorySchema).mutation(async ({ input, ctx }) => {
     const { id, title, content, columnId } = input
 
-    return await prisma.story.update({
+    return await ctx.prisma.story.update({
       where: { id },
       data: {
         title,
@@ -29,10 +28,10 @@ export const storyRouter = createTRPCRouter({
       },
     })
   }),
-  delete: publicProcedure.input(deleteStorySchema).mutation(async ({ input }) => {
+  delete: publicProcedure.input(deleteStorySchema).mutation(async ({ input, ctx }) => {
     const { id } = input
 
-    return await prisma.story.delete({
+    return await ctx.prisma.story.delete({
       where: { id },
     })
   }),
