@@ -20,8 +20,12 @@ export const StakeUnstake: React.FC = () => {
         </Heading>
         <Tabs defaultValue="stake">
           <Tabs.List>
-            <Tabs.Trigger value="stake">Stake</Tabs.Trigger>
-            <Tabs.Trigger value="unstake">Unstake</Tabs.Trigger>
+            <Tabs.Trigger value="stake" className="hover:!bg-opacity-20">
+              Stake
+            </Tabs.Trigger>
+            <Tabs.Trigger value="unstake" className="hover:!bg-opacity-20">
+              Unstake
+            </Tabs.Trigger>
           </Tabs.List>
           <Tabs.Content value="stake">
             <FormStake

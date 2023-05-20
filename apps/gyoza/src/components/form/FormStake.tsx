@@ -6,7 +6,7 @@ import { useBalance } from '@/hooks/stake/useBalance'
 import { useStake } from '@/hooks/stake/useStake'
 import { parseEther } from '@/lib/parseEther'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid'
-import { Button, NumberField, Typography, classNames } from '@ramen/ui'
+import { Button, NumberField, Spinner, Typography, classNames } from '@ramen/ui'
 import { useState } from 'react'
 
 interface FormStakeProps {
@@ -31,7 +31,10 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
     abi: xSushiABI,
   })
   const { data: balance } = useBalance({ tokenAddress })
-  const { contract: stake, error: stakeError } = useStake({
+  const {
+    contract: { write, isLoading: stakeIsTransacting },
+    error: stakeError,
+  } = useStake({
     abi: xSushiABI,
     amount,
     tokenAddress: spenderAddress,
@@ -81,8 +84,12 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
           Increase allowance
         </Button>
       ) : (
-        <Button className="rounded-8" disabled={amount === BigInt(0) || isError} onClick={() => stake.write?.()}>
-          Stake
+        <Button
+          className="rounded-8"
+          disabled={amount === BigInt(0) || isError || stakeIsTransacting}
+          onClick={() => write?.()}
+        >
+          {stakeIsTransacting ? <Spinner /> : 'Stake'}
         </Button>
       )}
     </div>

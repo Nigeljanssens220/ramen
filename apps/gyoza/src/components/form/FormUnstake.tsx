@@ -3,7 +3,7 @@ import { useBalance } from '@/hooks/stake/useBalance'
 import { useUnstake } from '@/hooks/stake/useUnstake'
 import { parseEther } from '@/lib/parseEther'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid'
-import { Button, NumberField, Typography, classNames } from '@ramen/ui'
+import { Button, NumberField, Spinner, Typography, classNames } from '@ramen/ui'
 import { useState } from 'react'
 
 interface FormUnstakeProps {
@@ -16,7 +16,10 @@ export const FormUnstake: React.FC<FormUnstakeProps> = ({ unstakeTokenAddress })
   const amount = parseEther(unstakeAmount)
 
   const { data: balance } = useBalance({ tokenAddress: unstakeTokenAddress })
-  const { contract: unstake, error: unstakeError } = useUnstake({
+  const {
+    contract: { write, isLoading: unstakeIsTransacting },
+    error: unstakeError,
+  } = useUnstake({
     abi: xSushiABI,
     amount,
     tokenAddress: unstakeTokenAddress as `0x${string}`,
@@ -57,8 +60,8 @@ export const FormUnstake: React.FC<FormUnstakeProps> = ({ unstakeTokenAddress })
           The amount you are trying to unstake exceeds your balance.
         </Typography>
       )}
-      <Button className="rounded-8" disabled={isError} onClick={() => unstake.write?.()}>
-        Unstake
+      <Button className="rounded-8" disabled={isError || unstakeIsTransacting} onClick={() => write?.()}>
+        {unstakeIsTransacting ? <Spinner /> : 'Unstake'}
       </Button>
     </div>
   )
