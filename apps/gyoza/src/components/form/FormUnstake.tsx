@@ -11,11 +11,12 @@ interface FormUnstakeProps {
 }
 
 export const FormUnstake: React.FC<FormUnstakeProps> = ({ unstakeTokenAddress }) => {
-  const [unstakeAmount, setUnstakeAmount] = useState<string | null>()
+  const [unstakeAmount, setUnstakeAmount] = useState<string>('')
+  const { data: balance } = useBalance({ tokenAddress: unstakeTokenAddress })
 
   const amount = parseEther(unstakeAmount)
+  const isAllowedToUnstake = amount <= balance.value
 
-  const { data: balance } = useBalance({ tokenAddress: unstakeTokenAddress })
   const {
     contract: { write, isLoading: unstakeIsTransacting },
     error: unstakeError,
@@ -23,18 +24,19 @@ export const FormUnstake: React.FC<FormUnstakeProps> = ({ unstakeTokenAddress })
     abi: xSushiABI,
     amount,
     tokenAddress: unstakeTokenAddress as `0x${string}`,
+    enabled: isAllowedToUnstake,
   })
 
   const unstakeAmountExceedsBalance = Boolean(unstakeAmount) && amount > balance.value
-  const isError = unstakeAmountExceedsBalance || amount === BigInt(0)
+  const isDisabled = unstakeAmountExceedsBalance || amount === BigInt(0)
 
   return (
     <div className="flex h-full w-full flex-col justify-between gap-y-1">
       <div className="flex w-full flex-col items-end gap-y-1">
         <Button
           variant="sm/inline"
-          className=" !p-0"
-          disabled={amount === BigInt(0)}
+          className="!p-0"
+          disabled={balance && parseFloat(balance.formatted) < 0.05}
           onClick={() => balance && setUnstakeAmount(balance.formatted)}
         >
           Max. {balance && Number(balance.formatted).toFixed(2)}
@@ -45,6 +47,7 @@ export const FormUnstake: React.FC<FormUnstakeProps> = ({ unstakeTokenAddress })
           error={unstakeAmountExceedsBalance}
           value={unstakeAmount}
           placeholder={'0'}
+          defaultValue="0"
           startIcon={
             <div className="mr-2 w-4">
               <ExclamationTriangleIcon
@@ -60,7 +63,7 @@ export const FormUnstake: React.FC<FormUnstakeProps> = ({ unstakeTokenAddress })
           The amount you are trying to unstake exceeds your balance.
         </Typography>
       )}
-      <Button className="rounded-8" disabled={isError || unstakeIsTransacting} onClick={() => write?.()}>
+      <Button className="rounded-8" disabled={isDisabled || unstakeIsTransacting} onClick={() => write?.()}>
         {unstakeIsTransacting ? <Spinner /> : 'Unstake'}
       </Button>
     </div>

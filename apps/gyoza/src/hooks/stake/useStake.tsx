@@ -2,15 +2,17 @@
 // @ts-nocheck
 import { ArrowTopRightOnSquareIcon, CheckBadgeIcon, XCircleIcon } from '@heroicons/react/24/solid'
 import { Typography, useToast } from '@ramen/ui'
+import { revalidatePath } from 'next/cache'
 import { mainnet, useAccount, useContractWrite, usePrepareContractWrite } from 'wagmi'
 
 export interface StakeProps {
   abi: unknown[]
   tokenAddress?: string
   amount: bigint
+  enabled?: boolean
 }
 
-export const useStake = ({ abi, amount, tokenAddress }: StakeProps) => {
+export const useStake = ({ abi, amount, tokenAddress, enabled }: StakeProps) => {
   const { address: userAddress } = useAccount()
   const { toast } = useToast()
 
@@ -21,7 +23,7 @@ export const useStake = ({ abi, amount, tokenAddress }: StakeProps) => {
     functionName: 'enter',
     args: [amount],
     account: userAddress,
-    enabled: Boolean(amount) && Boolean(userAddress) && Boolean(tokenAddress),
+    enabled: enabled && Boolean(amount) && Boolean(userAddress) && Boolean(tokenAddress),
   })
 
   const contract = useContractWrite({
@@ -41,19 +43,21 @@ export const useStake = ({ abi, amount, tokenAddress }: StakeProps) => {
           </div>
         ),
       })
+      revalidatePath('/stake')
     },
-    onError: () => {
+    onError: ({ cause }) => {
       toast({
-        title: 'Stake failed.',
+        title: 'Transaction failed.',
         description: (
           <div className="flex items-center justify-center gap-x-2">
             <XCircleIcon className="h-8 w-8 fill-primary" />
             <Typography as="span" variant="sm/regular" className="text-primary">
-              Your attempt to stake your tokens failed.
+              {cause?.shortMessage}
             </Typography>
           </div>
         ),
       })
+      revalidatePath('/stake')
     },
   })
 

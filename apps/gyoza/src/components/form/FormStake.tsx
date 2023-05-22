@@ -15,7 +15,8 @@ interface FormStakeProps {
 }
 
 export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddress }) => {
-  const [stakeAmount, setStakeAmount] = useState<string | null>()
+  const [stakeAmount, setStakeAmount] = useState<string>('')
+  const { data: balance } = useBalance({ tokenAddress })
   const { data: allowance } = useAllowance({
     spenderAddress: spenderAddress as `0x${string}`,
     tokenAddress: tokenAddress as `0x${string}`,
@@ -23,6 +24,7 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
   })
 
   const amount = parseEther(stakeAmount)
+  const isAllowedToStake = Boolean(allowance) && amount <= (allowance as bigint) && amount <= balance.value
 
   const { contract: approval, error } = useApproval({
     amount,
@@ -30,7 +32,6 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
     tokenAddress,
     abi: xSushiABI,
   })
-  const { data: balance } = useBalance({ tokenAddress })
   const {
     contract: { write, isLoading: stakeIsTransacting },
     error: stakeError,
@@ -38,11 +39,12 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
     abi: xSushiABI,
     amount,
     tokenAddress: spenderAddress,
+    enabled: isAllowedToStake,
   })
 
   const stakeAmountExceedsAllowance = Boolean(stakeAmount) && amount > (allowance as bigint)
   const stakeAmountExceedsBalance = Boolean(stakeAmount) && amount > balance.value
-  const isError = Boolean(error) || Boolean(stakeError) || stakeAmountExceedsBalance
+  const isDisabled = Boolean(error) || Boolean(stakeError) || stakeAmountExceedsBalance
 
   return (
     <div className="flex h-full w-full flex-col justify-between gap-y-1">
@@ -86,8 +88,11 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
       ) : (
         <Button
           className="rounded-8"
-          disabled={amount === BigInt(0) || isError || stakeIsTransacting}
-          onClick={() => write?.()}
+          disabled={amount === BigInt(0) || isDisabled || stakeIsTransacting}
+          onClick={() => {
+            write?.()
+            setStakeAmount('')
+          }}
         >
           {stakeIsTransacting ? <Spinner /> : 'Stake'}
         </Button>
