@@ -4,6 +4,7 @@ import { useAllowance } from '@/hooks/stake/useAllowance'
 import { useApproval } from '@/hooks/stake/useApproval'
 import { useBalance } from '@/hooks/stake/useBalance'
 import { useStake } from '@/hooks/stake/useStake'
+import useDebounce from '@/hooks/useDebounce'
 import { parseEther } from '@/lib/parseEther'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid'
 import { Button, NumberField, Spinner, Typography, classNames } from '@ramen/ui'
@@ -16,6 +17,7 @@ interface FormStakeProps {
 
 export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddress }) => {
   const [stakeAmount, setStakeAmount] = useState<string>('')
+  const debouncedStakeAmount = useDebounce(stakeAmount, 500) // Arbitrary 500ms delay before any RPC calls are made
   const { data: balance } = useBalance({ tokenAddress })
   const { data: allowance } = useAllowance({
     spenderAddress: spenderAddress as `0x${string}`,
@@ -23,7 +25,7 @@ export const FormStake: React.FC<FormStakeProps> = ({ tokenAddress, spenderAddre
     abi: sushiABI,
   })
 
-  const amount = parseEther(stakeAmount)
+  const amount = parseEther(debouncedStakeAmount)
   const isAllowedToStake = Boolean(allowance) && amount <= (allowance as bigint) && amount <= balance.value
 
   const { contract: approval, error } = useApproval({

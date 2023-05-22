@@ -1,6 +1,7 @@
 import { xSushiABI } from '@/contracts/xsushi'
 import { useBalance } from '@/hooks/stake/useBalance'
 import { useUnstake } from '@/hooks/stake/useUnstake'
+import useDebounce from '@/hooks/useDebounce'
 import { parseEther } from '@/lib/parseEther'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid'
 import { Button, NumberField, Spinner, Typography, classNames } from '@ramen/ui'
@@ -12,9 +13,10 @@ interface FormUnstakeProps {
 
 export const FormUnstake: React.FC<FormUnstakeProps> = ({ unstakeTokenAddress }) => {
   const [unstakeAmount, setUnstakeAmount] = useState<string>('')
+  const debouncedUnstakeAmount = useDebounce(unstakeAmount, 500) // Arbitrary 500ms delay before any RPC calls are made
   const { data: balance } = useBalance({ tokenAddress: unstakeTokenAddress })
 
-  const amount = parseEther(unstakeAmount)
+  const amount = parseEther(debouncedUnstakeAmount)
   const isAllowedToUnstake = amount <= balance.value
 
   const {
